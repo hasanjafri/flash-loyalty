@@ -1,0 +1,55 @@
+<!-- <mat-toolbar color="primary" fxShow="true" fxHide.lt-sm="true" fxLayout="row" fxLayoutAlign="start center">
+  <span>Flash Loyalty</span>
+  <span fxFlex></span>
+  <a mat-button>Button 1</a>
+  <a mat-button>Button 2</a>
+  <a mat-button>Button 3</a>
+  <a mat-button>Button 4</a>
+</mat-toolbar> -->
+<mat-toolbar class="fl-toolbar" color="primary">
+
+  <mat-toolbar-row>
+
+    <button mat-icon-button (click)="toggleSidenav.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+      <ul fxLayout fxLayoutGap="20px">
+        <li fxHide.xs>
+          <button mat-button color="primary" [matMenuTriggerFor]="userProfile">
+            Hi, username
+            <img src="../../../assets/media/images/avatar.png" style="height: 34px; width: 34px;">
+          </button>
+          <mat-menu #userProfile="matMenu" style.overflow-x="visible">
+            <app-user-menu></app-user-menu>
+          </mat-menu>
+        </li>
+        <!-- <li fxHide.xs>
+          <button mat-icon-button color="">
+            <mat-icon>settings</mat-icon>
+          </button>
+        </li>
+
+        <li fxHide.xs>
+          <button mat-icon-button>
+            <mat-icon>help_outline</mat-icon>
+          </button>
+        </li>
+
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="auth">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #auth="matMenu">
+            <button mat-menu-item>
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Sign out</span>
+            </button>
+          </mat-menu>
+        </li> -->
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

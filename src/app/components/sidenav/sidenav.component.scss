@@ -1,0 +1,45 @@
+.sidenav-container {
+  height: 100%;
+
+  .sidenav-content {
+    background-color: #F2F3F8;
+
+    &.sidenav-opened {
+      margin-left: 242px !important;
+    }
+  }
+
+  .sidenav {
+    background-color: #1e1e2d;
+
+    .sidenav-toolbar {
+      color: white;
+      background-color: #1b1b28;
+
+      .mat-toolbar-row,
+      .mat-toolbar-single-row {
+        padding: none !important;
+      }
+    }
+
+    a {
+      color: white;
+    }
+
+    .sidenav-expansion-panel {
+      background-color: #1e1e2d;
+
+      mat-panel-title.mat-expansion-panel-header-title {
+        color: white;
+      }
+
+      &.mat-expansion-panel:not([class*='mat-elevation-z']) {
+        box-shadow: none;
+
+        &:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+          background: none !important;
+        }
+      }
+    }
+  }
+}
