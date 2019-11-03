@@ -2,7 +2,7 @@
   height: 100%;
 
   .sidenav-content {
-    background-color: #F2F3F8;
+    background-color: #f2f3f8;
 
     &.sidenav-opened {
       margin-left: 242px !important;
@@ -15,18 +15,19 @@
 
     &.collapsed-nav {
       visibility: visible !important;
-      margin-left: 250px;
+      margin-left: 50px;
     }
 
     .collapsed-icon {
-      height: 44px;
-      width: 70px;
+      height: 64px;
+      width: 100%;
       color: white;
       display: block;
-      font-size: 30px;
-      text-align: center;
-      padding-top: 4px;
+      font-size: 35px;
+      text-align: right;
+      padding-top: 15px;
       cursor: pointer;
+      padding-right: 8px;
 
       &:hover {
         background-color: #13131d;
@@ -36,6 +37,14 @@
     .sidenav-toolbar {
       color: white;
       background-color: #13131d;
+
+      &.collapsed {
+        background-color: #1e1e2d;
+
+        &:hover {
+          background-color: #13131d;
+        }
+      }
 
       .mat-toolbar-row,
       .mat-toolbar-single-row {
@@ -67,7 +76,7 @@
       &.mat-expansion-panel:not([class*='mat-elevation-z']) {
         box-shadow: none;
 
-        &:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+        &:not(.mat-expanded):not([aria-disabled='true']) .mat-expansion-panel-header:hover {
           background: none !important;
         }
       }
@@ -78,7 +87,7 @@
         margin-right: 15px;
       }
 
-      ::ng-deep .sidenav-header>.mat-expansion-indicator:after {
+      ::ng-deep .sidenav-header > .mat-expansion-indicator:after {
         color: white;
       }
     }
