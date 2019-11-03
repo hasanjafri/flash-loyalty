@@ -11,17 +11,26 @@
   </mat-sidenav>
   <mat-sidenav-content fxFlexFill>Main Content</mat-sidenav-content>
 </mat-sidenav-container> -->
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" autosize>
 
-  <mat-sidenav class="sidenav" #sidenav opened="true" mode="side">
+  <mat-sidenav class="sidenav" #sidenav opened="isOpened" mode="side" [class.collapsed-nav]="!isOpened">
 
     <mat-toolbar class="sidenav-toolbar">
       <mat-toolbar-row>
         <h2> FLASH LOYALTY </h2>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end">
+          <mat-icon matListIcon (click)="toggleNav(); sidenav.toggle()" class="sidenav-toggle"
+            [class.collapsed-nav]="!isOpened">
+            chevron_left </mat-icon>
+        </div>
       </mat-toolbar-row>
     </mat-toolbar>
 
-    <mat-nav-list>
+    <ng-container *ngIf="!isOpened">
+      <mat-icon matListIcon *ngFor="let item of sideNavItems" class="collapsed-icon"> {{ item.icon }} </mat-icon>
+    </ng-container>
+
+    <mat-nav-list *ngIf="isOpened">
 
       <!-- <h2 matSubheader> Example </h2>
 
@@ -30,13 +39,14 @@
         <mat-icon matListIcon> {{ item.icon }} </mat-icon>
         {{ item.title }}
       </a> -->
-      <a mat-list-item (click)="sidenav.close()" [routerLink]="" routerLinkActive="list-item-active">
+      <!-- <a mat-list-item (click)="sidenav.close()" [routerLink]="" routerLinkActive="list-item-active">
         <mat-icon matListIcon> dashboard </mat-icon>
         Dashboard
-      </a>
+      </a> -->
       <mat-expansion-panel class="sidenav-expansion-panel" *ngFor="let item of sideNavItems">
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header class="sidenav-header">
           <mat-panel-title>
+            <mat-icon matListIcon> {{ item.icon }} </mat-icon>
             {{ item.title }}
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -45,17 +55,17 @@
           {{ routes.title }}
         </a>
       </mat-expansion-panel>
-      <a mat-list-item (click)="sidenav.close()" [routerLink]="" routerLinkActive="list-item-active">
+      <!-- <a mat-list-item (click)="sidenav.close()" [routerLink]="" routerLinkActive="list-item-active">
         <mat-icon matListIcon> power_off </mat-icon>
         Log Out
-      </a>
+      </a> -->
 
     </mat-nav-list>
 
   </mat-sidenav>
 
-  <mat-sidenav-content [class.sidenav-opened]="sidenav.opened" class="sidenav-content">
-    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+  <mat-sidenav-content [class.sidenav-opened]="isOpened" class="sidenav-content">
+    <app-toolbar></app-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 

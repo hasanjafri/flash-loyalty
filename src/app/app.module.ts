@@ -16,9 +16,11 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HomeComponent } from './views/home/home.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { UserMenuHeaderComponent } from './components/user-menu-header/user-menu-header.component';
+import { UserMenuBodyComponent } from './components/user-menu-body/user-menu-body.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ToolbarComponent, SidenavComponent, UserMenuComponent],
+  declarations: [AppComponent, HomeComponent, ToolbarComponent, SidenavComponent, UserMenuComponent, UserMenuHeaderComponent, UserMenuBodyComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

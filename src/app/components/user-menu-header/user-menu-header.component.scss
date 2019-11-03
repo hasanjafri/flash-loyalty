@@ -1,0 +1,55 @@
+.user-menu-header {
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 2rem 1rem;
+  background-color: #f9fafe;
+  background-image: url('../../../assets/media/images/bg-1.jpg');
+
+  &.padding-x {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  &:after,
+  &:before {
+    box-sizing: border-box;
+  }
+
+  .user-menu-avatar {
+    box-sizing: border-box;
+    display: block;
+
+    .avatar-img {
+      height: 60px;
+      width: 60px;
+      border-radius: 4px;
+      vertical-align: middle;
+      border-style: none;
+      box-sizing: border-box;
+    }
+  }
+
+  .user-menu-name {
+    color: #fff;
+    flex-grow: 1;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding-left: 1rem;
+
+    &:after,
+    &:before {
+      box-sizing: border-box;
+    }
+  }
+
+  .message-btn {
+    color: white;
+    background-color: #00bb88;
+
+    &:hover {
+      background-color: #15976D;
+    }
+  }
+}

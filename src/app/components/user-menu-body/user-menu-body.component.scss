@@ -1,0 +1,45 @@
+.user-menu-body-container {
+  box-sizing: border-box;
+  display: block;
+
+  .user-menu-body-link {
+    display: flex;
+    align-items: center;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid #f7f8fa;
+    transition: background-color .3s ease;
+    width: 100%;
+    clear: both;
+    font-weight: 400;
+    color: #74788d;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+
+    .user-menu-body-icon {
+      display: flex;
+      flex: 0 0 2.5rem;
+      align-items: center;
+    }
+
+    .user-menu-link-details {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      .user-menu-body-link-title {
+        transition: color .3s ease;
+        font-size: 1rem;
+        color: #595d6e;
+        font-weight: 500;
+      }
+
+      .user-menu-body-link-description {
+        font-size: 1rem;
+        font-weight: 300;
+        color: #74788d;
+      }
+    }
+  }
+}

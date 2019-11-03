@@ -10,10 +10,6 @@
 
   <mat-toolbar-row>
 
-    <button mat-icon-button (click)="toggleSidenav.emit()">
-      <mat-icon>menu</mat-icon>
-    </button>
-
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
       <ul fxLayout fxLayoutGap="20px">
@@ -22,7 +18,7 @@
             Hi, username
             <img src="../../../assets/media/images/avatar.png" style="height: 34px; width: 34px;">
           </button>
-          <mat-menu #userProfile="matMenu" style.overflow-x="visible">
+          <mat-menu #userProfile="matMenu">
             <app-user-menu></app-user-menu>
           </mat-menu>
         </li>

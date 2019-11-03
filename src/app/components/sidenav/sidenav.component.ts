@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
+  isOpened = true;
+
   sideNavItems = [
     {
       routes: [{ title: 'View Vendors', route: '' }, { title: 'Create New Vendor', route: '' }],
@@ -37,4 +39,8 @@ export class SidenavComponent {
       icon: 'file_copy'
     }
   ];
+
+  toggleNav() {
+    this.isOpened = !this.isOpened;
+  }
 }
