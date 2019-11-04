@@ -17,12 +17,8 @@
       <mat-toolbar-row>
         <h2>FLASH LOYALTY</h2>
         <div fxFlex fxLayout fxLayoutAlign="flex-end">
-          <mat-icon
-            matListIcon
-            (click)="toggleNav(); sidenav.toggle()"
-            class="sidenav-toggle"
-            [class.collapsed-nav]="!isOpened"
-          >
+          <mat-icon matListIcon (click)="toggleNav(); sidenav.toggle()" class="sidenav-toggle"
+            [class.collapsed-nav]="!isOpened">
             chevron_left
           </mat-icon>
         </div>
@@ -54,13 +50,8 @@
             {{ item.title }}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <a
-          *ngFor="let routes of item.routes"
-          mat-list-item
-          (click)="sidenav.close()"
-          [routerLink]="[routes.route]"
-          routerLinkActive="list-item-active"
-        >
+        <a *ngFor="let routes of item.routes" mat-list-item [routerLink]="routes.route"
+          routerLinkActive="list-item-active">
           {{ routes.title }}
         </a>
       </mat-expansion-panel>

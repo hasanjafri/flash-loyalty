@@ -67,6 +67,10 @@
     .sidenav-expansion-panel {
       background-color: #1e1e2d;
 
+      &:hover {
+        background-color: #13131d;
+      }
+
       mat-panel-title {
         &.mat-expansion-panel-header-title {
           color: white;
@@ -87,7 +91,7 @@
         margin-right: 15px;
       }
 
-      ::ng-deep .sidenav-header > .mat-expansion-indicator:after {
+      ::ng-deep .sidenav-header>.mat-expansion-indicator:after {
         color: white;
       }
     }
