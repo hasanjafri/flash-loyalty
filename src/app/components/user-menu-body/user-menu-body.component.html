@@ -1,9 +1,10 @@
 <div class="user-menu-body-container">
-  <a *ngFor="let item of menuLinks" class="user-menu-body-link">
+  <a *ngFor="let item of menuLinks" class="user-menu-body-link" [routerLink]="">
     <mat-icon matListIcon class="user-menu-body-icon"> {{ item.icon }} </mat-icon>
     <div class="user-menu-body-link-details">
       <div class="user-menu-body-link-title"> {{ item.title }} </div>
       <div class="user-menu-body-link-description"> {{ item.description }} </div>
     </div>
   </a>
+  <button mat-stroked-button color="warn" class="sign-out-btn">SIGN OUT</button>
 </div>

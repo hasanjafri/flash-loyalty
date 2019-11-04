@@ -13,6 +13,11 @@
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
       <ul fxLayout fxLayoutGap="20px">
+        <li *ngFor="let item of toolbarLinks" class="toolbar-icon">
+          <button mat-icon-button>
+            <mat-icon> {{ item.icon }} </mat-icon>
+          </button>
+        </li>
         <li fxHide.xs>
           <button mat-button color="primary" [matMenuTriggerFor]="userProfile">
             Hi, username

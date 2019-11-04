@@ -16,6 +16,11 @@
     white-space: nowrap;
     background-color: transparent;
     border: 0;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #F2F3F8;
+    }
 
     .user-menu-body-icon {
       display: flex;
@@ -41,5 +46,10 @@
         color: #74788d;
       }
     }
+  }
+
+  .sign-out-btn {
+    margin-left: 21px;
+    margin-top: 11px;
   }
 }
