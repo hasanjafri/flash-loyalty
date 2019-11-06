@@ -8,9 +8,6 @@ import { Component } from '@angular/core';
 export class ToolbarComponent {
   toolbarLinks = [
     {
-      icon: 'search'
-    },
-    {
       icon: 'notifications_active'
     },
     {
