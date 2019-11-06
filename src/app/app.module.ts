@@ -18,9 +18,10 @@ import { HomeComponent } from './views/home/home.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { UserMenuHeaderComponent } from './components/user-menu-header/user-menu-header.component';
 import { UserMenuBodyComponent } from './components/user-menu-body/user-menu-body.component';
+import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ToolbarComponent, SidenavComponent, UserMenuComponent, UserMenuHeaderComponent, UserMenuBodyComponent],
+  declarations: [AppComponent, HomeComponent, ToolbarComponent, SidenavComponent, UserMenuComponent, UserMenuHeaderComponent, UserMenuBodyComponent, BarGraphComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
