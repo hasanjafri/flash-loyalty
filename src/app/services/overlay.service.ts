@@ -18,15 +18,15 @@ export class OverlayService {
     return new PortalInjector(this.injector, injectorTokens);
   }
 
-  open(overlayType, overlayProps?) {
+  open(overlayType, overlayProps?, hasBackdrop?) {
     const overlayRef = this.overlay.create({
       positionStrategy: this.overlay
         .position()
         .global()
         .centerHorizontally()
         .centerVertically(),
-      hasBackdrop: true,
-      backdropClass: 'dark-backdrop',
+      hasBackdrop: hasBackdrop ? true : false,
+      backdropClass: hasBackdrop ? 'dark-backdrop' : null,
       scrollStrategy: this.overlay.scrollStrategies.block()
     });
     const injectionData = overlayProps ? this.createInjector(overlayProps) : null;

@@ -13,16 +13,8 @@
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
       <ul fxLayout fxLayoutGap="20px">
-        <li>
-          <button mat-icon-button [matMenuTriggerFor]="searchBar" class='toolbar-icon'>
-            <mat-icon>search</mat-icon>
-          </button>
-          <mat-menu #searchBar="matMenu">
-            <app-search-bar></app-search-bar>
-          </mat-menu>
-        </li>
         <li *ngFor="let item of toolbarLinks" class="toolbar-icon">
-          <button mat-icon-button>
+          <button mat-icon-button (click)="item.click">
             <mat-icon> {{ item.icon }} </mat-icon>
           </button>
         </li>
