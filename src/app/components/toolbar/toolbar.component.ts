@@ -13,7 +13,7 @@ export class ToolbarComponent {
   toolbarLinks = [
     {
       icon: 'search',
-      click: this.openSearch()
+      click: () => this.openSearch()
     },
     {
       icon: 'notifications_active'
