@@ -11,6 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
@@ -51,7 +52,8 @@ import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.c
     MatListModule,
     MatDividerModule,
     MatExpansionModule,
-    MatGridListModule
+    MatGridListModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent],
