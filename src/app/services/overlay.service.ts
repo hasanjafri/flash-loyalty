@@ -18,13 +18,16 @@ export class OverlayService {
     return new PortalInjector(this.injector, injectorTokens);
   }
 
-  open(overlayType, overlayProps?) {
+  open(overlayType, connectedElement?, overlayProps?) {
+    console.log(connectedElement);
     const overlayRef = this.overlay.create({
       positionStrategy: this.overlay
         .position()
-        .global()
-        .centerHorizontally()
-        .centerVertically(),
+        .flexibleConnectedTo(connectedElement)
+        .withPositions([
+          { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
+          { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' }
+        ]),
       hasBackdrop: true,
       backdropClass: 'dark-backdrop',
       scrollStrategy: this.overlay.scrollStrategies.block()

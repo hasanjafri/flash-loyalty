@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { OverlayService } from 'src/app/services/overlay.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 
@@ -8,7 +8,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  constructor(private overlayService: OverlayService) {}
+  @ViewChildren('toolbarIcons') toolbarIcons: QueryList<ElementRef>;
 
   toolbarLinks = [
     {
@@ -23,7 +23,9 @@ export class ToolbarComponent {
     }
   ];
 
+  constructor(private overlayService: OverlayService) {}
+
   openSearch() {
-    this.overlayService.open(SearchBarComponent);
+    this.overlayService.open(SearchBarComponent, this.toolbarIcons.first);
   }
 }

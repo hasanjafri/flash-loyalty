@@ -13,7 +13,7 @@
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
       <ul fxLayout fxLayoutGap="20px">
-        <li *ngFor="let item of toolbarLinks" class="toolbar-icon" (click)="item.click()">
+        <li #toolbarIcons *ngFor="let item of toolbarLinks" class="toolbar-icon" (click)="item.click()">
           <button mat-icon-button>
             <mat-icon> {{ item.icon }} </mat-icon>
           </button>

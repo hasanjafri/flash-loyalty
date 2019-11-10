@@ -12,5 +12,13 @@
     width: 100%;
     margin: 0;
     padding: 0 25px;
+
+    .bar-graph-tile {
+      border-bottom: rgba(93, 120, 255, .2);
+      box-shadow: 0 0 13px 0 rgba(82, 63, 105, .05);
+      background-color: #fff;
+      border-radius: 4px;
+      margin: 5px 5px;
+    }
   }
 }

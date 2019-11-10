@@ -1,23 +1,75 @@
 .search-bar-container {
-  .search-bar-input {
-    border: 0;
-    background: 0 0;
-    outline: 0 !important;
-    box-shadow: none;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    padding: 0;
-    border-radius: 0;
-    position: relative;
-    flex: 1 1 auto;
-    margin-bottom: 0;
-    display: block;
-    height: calc(1.5em + 1.3rem + 2px);
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  width: 320px;
+  padding: 0;
+  display: block;
+  right: auto;
+  bottom: auto;
+  border: 0 !important;
+  margin: 0;
+  border-radius: 4px;
+  min-width: 14rem;
+  box-shadow: 0 0 50px 0 rgba(82, 63, 105, .15);
+  z-index: 95;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+
+  .search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 1rem 1.5rem;
+    box-sizing: border-box;
+
+    .search-bar-input {
+      border: 0;
+      background: 0 0;
+      outline: 0 !important;
+      box-shadow: none;
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+      padding: 0;
+      border-radius: 0;
+      position: relative;
+      flex: 1 1 auto;
+      margin-bottom: 0;
+      display: block;
+      height: calc(1.5em + 1.3rem + 2px);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    mat-icon {
+      display: flex
+    }
+
+    .search-icon {
+      padding-left: 0;
+      border: 0;
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
+      margin-bottom: 0;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #74788d;
+      text-align: center;
+      white-space: nowrap;
+      border-radius: 4px;
+    }
+
+    .pointer {
+      cursor: pointer;
+    }
   }
+
 }

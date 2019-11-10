@@ -1,5 +1,18 @@
 <div class="home-container">
   <div class="home-view">
-    <app-bar-graph></app-bar-graph>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile class="bar-graph-tile">
+        <app-bar-graph [data]="barGraphOne" [id]="'1'"></app-bar-graph>
+      </mat-grid-tile>
+      <mat-grid-tile class="bar-graph-tile">
+        <app-bar-graph [data]="barGraphTwo" [id]="'2'"></app-bar-graph>
+      </mat-grid-tile>
+      <mat-grid-tile class="bar-graph-tile">
+        <app-bar-graph [data]="barGraphThree" [id]="'3'"></app-bar-graph>
+      </mat-grid-tile>
+      <mat-grid-tile class="bar-graph-tile">
+        <app-bar-graph [data]="barGraphFour" [id]="'4'"></app-bar-graph>
+      </mat-grid-tile>
+    </mat-grid-list>
   </div>
 </div>
