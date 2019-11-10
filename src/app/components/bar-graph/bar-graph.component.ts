@@ -13,6 +13,9 @@ am4core.useTheme(am4themes_animated);
 export class BarGraphComponent implements AfterViewInit, OnDestroy {
   @Input() data: any;
   @Input() id: string;
+  @Input() graphTitle: string;
+  @Input() xLabel: string;
+  @Input() yLabel: string;
   private chart: am4charts.XYChart;
 
   constructor(private zone: NgZone) {}
@@ -23,7 +26,10 @@ export class BarGraphComponent implements AfterViewInit, OnDestroy {
       chart.data = this.data;
 
       const categoryAxes = chart.xAxes.push(new am4charts.CategoryAxis());
-      categoryAxes.dataFields.category = 'month';
+      categoryAxes.dataFields.category = this.xLabel;
+      categoryAxes.title.text = this.xLabel;
+      categoryAxes.title.fontSize = 18;
+      categoryAxes.title.marginTop = 30;
       categoryAxes.renderer.grid.template.location = 0;
       categoryAxes.renderer.minGridDistance = 30;
 
@@ -35,16 +41,26 @@ export class BarGraphComponent implements AfterViewInit, OnDestroy {
       });
 
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.title.text = this.yLabel;
+      valueAxis.title.fontSize = 18;
+
       const series = chart.series.push(new am4charts.ColumnSeries());
-      series.dataFields.valueY = 'transactions';
-      series.dataFields.categoryX = 'month';
-      series.name = 'Transactions Processed';
+      series.dataFields.valueY = this.yLabel;
+      series.dataFields.categoryX = this.xLabel;
+      series.name = this.graphTitle;
       series.columns.template.tooltipText = '{categoryX}: [bold]{valueY}[/]';
       series.columns.template.fillOpacity = 0.8;
 
       const columnTemplate = series.columns.template;
       columnTemplate.strokeWidth = 2;
       columnTemplate.strokeOpacity = 1;
+
+      const title = chart.titles.create();
+      title.text = this.graphTitle;
+      title.fontSize = 25;
+      title.marginBottom = 30;
+
+      this.chart = chart;
       // const chart = am4core.create('bar-graph-div', am4charts.XYChart);
 
       // chart.paddingRight = 20;

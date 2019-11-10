@@ -55,139 +55,111 @@ export class HomeComponent {
   barGraphTwo = [
     {
       month: 'January',
-      transactions: 100
+      signups: 1000
     },
     {
       month: 'February',
-      transactions: 200
+      signups: 2000
     },
     {
       month: 'March',
-      transactions: 300
+      signups: 3100
     },
     {
       month: 'May',
-      transactions: 400
+      signups: 1400
     },
     {
       month: 'June',
-      transactions: 500
+      signups: 507
     },
     {
       month: 'July',
-      transactions: 600
+      signups: 684
     },
     {
       month: 'August',
-      transactions: 700
+      signups: 1257
     },
     {
       month: 'September',
-      transactions: 800
+      signups: 2035
     },
     {
       month: 'October',
-      transactions: 900
+      signups: 3333
     },
     {
       month: 'November',
-      transactions: 1000
+      signups: 4123
     },
     {
       month: 'December',
-      transactions: 900
+      signups: 752
     }
   ];
   barGraphThree = [
     {
-      month: 'January',
-      transactions: 100
+      vendorType: 'Applications',
+      signups: 1000
     },
     {
-      month: 'February',
-      transactions: 200
+      vendorType: 'Hardware',
+      signups: 2000
     },
     {
-      month: 'March',
-      transactions: 300
+      vendorType: 'Services',
+      signups: 300
     },
     {
-      month: 'May',
-      transactions: 400
-    },
-    {
-      month: 'June',
-      transactions: 500
-    },
-    {
-      month: 'July',
-      transactions: 600
-    },
-    {
-      month: 'August',
-      transactions: 700
-    },
-    {
-      month: 'September',
-      transactions: 800
-    },
-    {
-      month: 'October',
-      transactions: 900
-    },
-    {
-      month: 'November',
-      transactions: 1000
-    },
-    {
-      month: 'December',
-      transactions: 900
+      vendorType: 'Software',
+      signups: 4000
     }
   ];
   barGraphFour = [
     {
       month: 'January',
-      transactions: 100
+      signups: 10000
     },
     {
       month: 'February',
-      transactions: 200
+      signups: 20031
     },
     {
       month: 'March',
-      transactions: 300
+      signups: 30031
     },
     {
       month: 'May',
-      transactions: 400
+      signups: 4300
     },
     {
       month: 'June',
-      transactions: 500
+      signups: 5004
     },
     {
       month: 'July',
-      transactions: 600
+      signups: 6005
     },
     {
       month: 'August',
-      transactions: 700
+      signups: 7006
     },
     {
       month: 'September',
-      transactions: 800
+      signups: 5234
     },
     {
       month: 'October',
-      transactions: 900
+      signups: 1235
     },
     {
       month: 'November',
-      transactions: 1000
+      signups: 2346
     },
     {
       month: 'December',
-      transactions: 900
+      signups: 3543
     }
   ];
 }
