@@ -15,7 +15,9 @@
   <mat-sidenav class="sidenav" #sidenav opened="isOpened" mode="side" [class.collapsed-nav]="!isOpened">
     <mat-toolbar class="sidenav-toolbar" [class.collapsed]="!isOpened">
       <mat-toolbar-row>
-        <h2>FLASH LOYALTY</h2>
+        <h2>
+          <a routerLink="dashboard" class="sidenav-title"> FLASH LOYALTY </a>
+        </h2>
         <div fxFlex fxLayout fxLayoutAlign="flex-end">
           <mat-icon matListIcon (click)="toggleNav(); sidenav.toggle()" class="sidenav-toggle"
             [class.collapsed-nav]="!isOpened">

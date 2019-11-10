@@ -21,6 +21,8 @@ import { UserMenuBodyComponent } from './components/user-menu-body/user-menu-bod
 import { UserMenuHeaderComponent } from './components/user-menu-header/user-menu-header.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { HomeComponent } from './views/home/home.component';
+import { CreateVendorComponent } from './views/vendor/create-vendor/create-vendor.component';
+import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { HomeComponent } from './views/home/home.component';
     UserMenuHeaderComponent,
     UserMenuBodyComponent,
     BarGraphComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CreateVendorComponent,
+    ViewVendorsComponent
   ],
   imports: [
     BrowserModule,

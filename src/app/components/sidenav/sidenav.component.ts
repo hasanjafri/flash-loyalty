@@ -10,7 +10,10 @@ export class SidenavComponent {
 
   sideNavItems = [
     {
-      routes: [{ title: 'View Vendors', route: '' }, { title: 'Create New Vendor', route: '' }],
+      routes: [
+        { title: 'View Vendors', route: 'view-vendors' },
+        { title: 'Create New Vendor', route: 'create-vendor' }
+      ],
       title: 'Vendors',
       icon: 'business'
     },
