@@ -6,5 +6,13 @@
       <div class="user-menu-body-link-description"> {{ item.description }} </div>
     </div>
   </a>
+  <button [disabled]="currentRole === 'customer'" (click)="changeRole('customer')" mat-stroked-button
+    class="sign-out-btn">SIGN IN AS CUSTOMER</button>
+  <button [disabled]="currentRole === 'vendor'" (click)="changeRole('vendor')" mat-flat-button color="accent"
+    class="sign-out-btn">SIGN IN AS
+    VENDOR</button>
+  <button [disabled]="currentRole === 'admin'" (click)="changeRole('admin')" mat-flat-button color="primary"
+    class="sign-out-btn">SIGN IN AS
+    ADMIN</button>
   <button mat-stroked-button color="warn" class="sign-out-btn">SIGN OUT</button>
 </div>
