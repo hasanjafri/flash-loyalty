@@ -11,7 +11,28 @@
 
   .sidenav {
     min-width: 240px;
-    background-color: #1e1e2d;
+
+    &.admin {
+      background-color: #1e1e2d;
+    }
+
+    &.vendor {
+      background-color: #0277BD;
+
+      .sidenav-toolbar,
+      .sidenav-expansion-panel {
+        background-color: rgb(1, 73, 114);
+      }
+    }
+
+    &.customer {
+      background-color: #D84315;
+
+      .sidenav-toolbar,
+      .sidenav-expansion-panel {
+        background-color: rgb(146, 46, 16);
+      }
+    }
 
     &.collapsed-nav {
       visibility: visible !important;

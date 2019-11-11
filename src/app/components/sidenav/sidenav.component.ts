@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit, OnDestroy {
   isOpened = true;
+  currentRole: string;
+  currentRoleSub: Subscription;
 
   sideNavItems = [
     {
@@ -42,6 +46,20 @@ export class SidenavComponent {
       icon: 'file_copy'
     }
   ];
+
+  constructor(private authService: AuthService) {}
+
+  async ngOnInit() {
+    this.currentRoleSub = await this.authService.currentRoleSub.subscribe(
+      (currentRole) => (this.currentRole = currentRole)
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.currentRoleSub) {
+      this.currentRoleSub.unsubscribe();
+    }
+  }
 
   toggleNav() {
     this.isOpened = !this.isOpened;

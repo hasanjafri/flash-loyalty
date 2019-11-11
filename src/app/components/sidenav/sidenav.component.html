@@ -12,7 +12,8 @@
   <mat-sidenav-content fxFlexFill>Main Content</mat-sidenav-content>
 </mat-sidenav-container> -->
 <mat-sidenav-container class="sidenav-container" autosize>
-  <mat-sidenav class="sidenav" #sidenav opened="isOpened" mode="side" [class.collapsed-nav]="!isOpened">
+  <mat-sidenav class="sidenav" [ngClass]="currentRole" #sidenav opened="isOpened" mode="side"
+    [class.collapsed-nav]="!isOpened">
     <mat-toolbar class="sidenav-toolbar" [class.collapsed]="!isOpened">
       <mat-toolbar-row>
         <h2>

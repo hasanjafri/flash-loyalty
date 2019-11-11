@@ -6,7 +6,7 @@
   <a mat-button>Button 3</a>
   <a mat-button>Button 4</a>
 </mat-toolbar> -->
-<mat-toolbar class="fl-toolbar" color="primary">
+<mat-toolbar class="fl-toolbar" [ngClass]="currentRole">
 
   <mat-toolbar-row>
 
@@ -19,7 +19,7 @@
           </button>
         </li>
         <li>
-          <button mat-button color="primary" [matMenuTriggerFor]="userProfile">
+          <button mat-button class="toolbar-icon" [matMenuTriggerFor]="userProfile">
             Hi, username
             <img src="../../../assets/media/images/avatar.png" style="height: 34px; width: 34px;">
           </button>
