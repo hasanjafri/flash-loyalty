@@ -1,7 +1,9 @@
 import * as am4charts from '@amcharts/amcharts4/charts';
 import * as am4core from '@amcharts/amcharts4/core';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
-import { AfterViewInit, Component, Input, NgZone, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, Input, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 am4core.useTheme(am4themes_animated);
 
@@ -10,15 +12,24 @@ am4core.useTheme(am4themes_animated);
   templateUrl: './bar-graph.component.html',
   styleUrls: ['./bar-graph.component.scss']
 })
-export class BarGraphComponent implements AfterViewInit, OnDestroy {
+export class BarGraphComponent implements AfterViewInit, OnDestroy, OnInit {
   @Input() data: any;
   @Input() id: string;
   @Input() graphTitle: string;
   @Input() xLabel: string;
   @Input() yLabel: string;
-  private chart: am4charts.XYChart;
 
-  constructor(private zone: NgZone) {}
+  private chart: am4charts.XYChart;
+  currentRole: string;
+  currentRoleSub: Subscription;
+
+  constructor(private zone: NgZone, private authService: AuthService) {}
+
+  async ngOnInit() {
+    this.currentRoleSub = await this.authService.currentRoleSub.subscribe(
+      (currentRole) => (this.currentRole = currentRole)
+    );
+  }
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
@@ -50,6 +61,12 @@ export class BarGraphComponent implements AfterViewInit, OnDestroy {
       series.name = this.graphTitle;
       series.columns.template.tooltipText = '{categoryX}: [bold]{valueY}[/]';
       series.columns.template.fillOpacity = 0.8;
+      series.columns.template.fill =
+        this.currentRole === 'vendor'
+          ? am4core.color('#0277BD')
+          : this.currentRole === 'customer'
+          ? am4core.color('#D84315')
+          : am4core.color('1e1e2d');
 
       const columnTemplate = series.columns.template;
       columnTemplate.strokeWidth = 2;
@@ -97,6 +114,9 @@ export class BarGraphComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (this.currentRoleSub) {
+      this.currentRoleSub.unsubscribe();
+    }
     this.zone.runOutsideAngular(() => {
       if (this.chart) {
         this.chart.dispose();
