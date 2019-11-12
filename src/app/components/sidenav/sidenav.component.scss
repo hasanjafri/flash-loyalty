@@ -22,6 +22,10 @@
       .sidenav-toolbar,
       .sidenav-expansion-panel {
         background-color: rgb(1, 73, 114);
+
+        &.collapsed {
+          background-color: #0277BD;
+        }
       }
     }
 
@@ -31,6 +35,10 @@
       .sidenav-toolbar,
       .sidenav-expansion-panel {
         background-color: rgb(146, 46, 16);
+
+        &.collapsed {
+          background-color: #D84315;
+        }
       }
     }
 
