@@ -24,6 +24,7 @@ import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { HomeComponent } from './views/home/home.component';
 import { CreateVendorComponent } from './views/vendor/create-vendor/create-vendor.component';
 import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.c
     BarGraphComponent,
     SearchBarComponent,
     CreateVendorComponent,
-    ViewVendorsComponent
+    ViewVendorsComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
