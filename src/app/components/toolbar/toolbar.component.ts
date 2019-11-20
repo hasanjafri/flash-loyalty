@@ -1,8 +1,8 @@
-import { Component, ElementRef, QueryList, ViewChildren, OnInit, OnDestroy } from '@angular/core';
-import { OverlayService } from 'src/app/services/overlay.service';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { Component, ElementRef, Input, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { OverlayService } from 'src/app/services/overlay.service';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
   @ViewChildren('toolbarIcons') toolbarIcons: QueryList<ElementRef>;
+  @Input() active: boolean;
 
   currentRole: string;
   currentRoleSub: Subscription;

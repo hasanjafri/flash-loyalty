@@ -20,14 +20,21 @@ export class OverlayService {
 
   open(overlayType, connectedElement?, overlayProps?) {
     console.log(connectedElement);
+    console.log(overlayProps);
     const overlayRef = this.overlay.create({
-      positionStrategy: this.overlay
-        .position()
-        .flexibleConnectedTo(connectedElement)
-        .withPositions([
-          { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
-          { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' }
-        ]),
+      positionStrategy: connectedElement
+        ? this.overlay
+            .position()
+            .flexibleConnectedTo(connectedElement)
+            .withPositions([
+              { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
+              { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' }
+            ])
+        : this.overlay
+            .position()
+            .global()
+            .centerHorizontally()
+            .centerVertically(),
       hasBackdrop: true,
       backdropClass: 'dark-backdrop',
       scrollStrategy: this.overlay.scrollStrategies.block()

@@ -1,13 +1,15 @@
 <div class="user-menu-body-container">
-  <a *ngFor="let item of menuLinks" class="user-menu-body-link" [routerLink]="">
-    <mat-icon matListIcon class="user-menu-body-icon"> {{ item.icon }} </mat-icon>
-    <div class="user-menu-body-link-details">
-      <div class="user-menu-body-link-title"> {{ item.title }} </div>
-      <div class="user-menu-body-link-description"> {{ item.description }} </div>
-    </div>
-  </a>
+  <ng-container *ngIf="active">
+    <a *ngFor="let item of menuLinks" class="user-menu-body-link" [routerLink]="">
+      <mat-icon matListIcon class="user-menu-body-icon"> {{ item.icon }} </mat-icon>
+      <div class="user-menu-body-link-details">
+        <div class="user-menu-body-link-title"> {{ item.title }} </div>
+        <div class="user-menu-body-link-description"> {{ item.description }} </div>
+      </div>
+    </a>
+  </ng-container>
   <ng-container *ngFor="let item of ['customer', 'vendor', 'admin']">
-    <button *ngIf="currentRole !== item" (click)="changeRole(item)" mat-flat-button class="user-menu-btn"
+    <button *ngIf="currentRole !== item" (click)="openLoginModal(item)" mat-flat-button class="user-menu-btn"
       [ngClass]="item"> SIGN IN AS {{ item.toUpperCase() }} </button>
   </ng-container>
   <!-- <button [disabled]="currentRole === 'customer'" (click)="changeRole('customer')" mat-stroked-button
@@ -18,5 +20,7 @@
   <button [disabled]="currentRole === 'admin'" (click)="changeRole('admin')" mat-flat-button color="primary"
     class="sign-out-btn">SIGN IN AS
     ADMIN</button> -->
-  <button mat-stroked-button color="warn" class="user-menu-btn">SIGN OUT</button>
+  <button *ngIf="currentRole !== ''" mat-stroked-button color="warn" class="user-menu-btn" [routerLink]="'index'"
+    (click)="openLoginModal('')">SIGN
+    OUT</button>
 </div>

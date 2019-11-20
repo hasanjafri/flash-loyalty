@@ -1,6 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { OverlayService } from 'src/app/services/overlay.service';
+import { LogInComponent } from 'src/app/views/log-in/log-in.component';
 
 @Component({
   selector: 'app-user-menu-body',
@@ -8,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./user-menu-body.component.scss']
 })
 export class UserMenuBodyComponent implements OnInit, OnDestroy {
+  @Input() active: boolean;
   currentRole: string;
   currentRoleSub: Subscription;
 
@@ -34,7 +37,7 @@ export class UserMenuBodyComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private overlayService: OverlayService) {}
 
   async ngOnInit() {
     this.currentRoleSub = await this.authService.currentRoleSub.subscribe(
@@ -48,7 +51,11 @@ export class UserMenuBodyComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeRole(newRole) {
-    this.authService.changeRole(newRole);
+  openLoginModal(type: string) {
+    if (this.active) {
+      this.authService.changeRole(type);
+    } else {
+      this.overlayService.open(LogInComponent, null, { type: type.toUpperCase() });
+    }
   }
 }
