@@ -1,10 +1,10 @@
 <mat-card class="mat-typography" [class.customer]="overlayProps.type === 'CUSTOMER'"
   [class.vendor]="overlayProps.type === 'VENDOR'" [class.admin]="overlayProps.type === 'ADMIN'">
   <mat-card-title class="padding-t10 padding-x10" [class.customer]="overlayProps.type === 'CUSTOMER'"
-    [class.vendor]="overlayProps.type === 'VENDOR'" [class.admin]="overlayProps.type === 'ADMIN'">Login as
-    {{ overlayProps.type }}</mat-card-title>
+    [class.vendor]="overlayProps.type === 'VENDOR'" [class.admin]="overlayProps.type === 'ADMIN'">
+    {{ forgotPassword ? 'Reset your password' : 'Login as ' + overlayProps.type }} </mat-card-title>
   <mat-card-content class="padding-x10">
-    <form class="login-form">
+    <form *ngIf="!forgotPassword" class="login-form">
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
         <input [class.customer]="overlayProps.type === 'CUSTOMER'" [class.vendor]="overlayProps.type === 'VENDOR'"
@@ -16,9 +16,18 @@
           [class.admin]="overlayProps.type === 'ADMIN'" matInput placeholder="Password" name="password" type="password"
           required />
       </mat-form-field>
+      <a class="forgot-password" (click)="onClickForgotPassword()">Forgot your password?</a>
+    </form>
+    <form *ngIf="forgotPassword" class="forgot-password-form">
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input [class.customer]="overlayProps.type === 'CUSTOMER'" [class.vendor]="overlayProps.type === 'VENDOR'"
+          [class.admin]="overlayProps.type === 'ADMIN'" matInput placeholder="Email" name="email" required />
+      </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions class="padding-x10">
-    <button mat-raised-button type="submit" (click)="test()" color="primary">LOGIN</button>
+    <button mat-raised-button type="submit" color="primary" class="full-width"
+      (click)="onSubmit()">{{ forgotPassword ? 'SUBMIT' : 'LOGIN' }}</button>
   </mat-card-actions>
 </mat-card>

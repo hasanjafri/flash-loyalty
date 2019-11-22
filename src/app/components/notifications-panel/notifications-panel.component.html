@@ -1,0 +1,9 @@
+<mat-list class="container">
+  <mat-list-item class="notification" *ngFor="let notification of notifications">
+    <img matListAvatar [src]="notification.img" alt="notification.name" />
+    <h3 matLine class="notification-name">{{ notification.name }}</h3>
+    <p matLine class="notification-description">
+      <span> {{ notification.description }} </span>
+    </p>
+  </mat-list-item>
+</mat-list>
