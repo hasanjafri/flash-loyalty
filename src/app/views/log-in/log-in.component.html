@@ -7,14 +7,15 @@
     <form *ngIf="!forgotPassword" class="login-form">
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
-        <input [class.customer]="overlayProps.type === 'CUSTOMER'" [class.vendor]="overlayProps.type === 'VENDOR'"
-          [class.admin]="overlayProps.type === 'ADMIN'" matInput placeholder="Email" name="email" required />
+        <input [(ngModel)]="enteredEmail" [class.customer]="overlayProps.type === 'CUSTOMER'"
+          [class.vendor]="overlayProps.type === 'VENDOR'" [class.admin]="overlayProps.type === 'ADMIN'" matInput
+          placeholder="Email" name="email" required />
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
-        <input [class.customer]="overlayProps.type === 'CUSTOMER'" [class.vendor]="overlayProps.type === 'VENDOR'"
-          [class.admin]="overlayProps.type === 'ADMIN'" matInput placeholder="Password" name="password" type="password"
-          required />
+        <input [(ngModel)]="enteredPassword" [class.customer]="overlayProps.type === 'CUSTOMER'"
+          [class.vendor]="overlayProps.type === 'VENDOR'" [class.admin]="overlayProps.type === 'ADMIN'" matInput
+          placeholder="Password" name="password" type="password" required />
       </mat-form-field>
       <a class="forgot-password" (click)="onClickForgotPassword()">Forgot your password?</a>
     </form>

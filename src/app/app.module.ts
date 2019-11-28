@@ -1,5 +1,8 @@
+import { AgGridModule } from "@ag-grid-community/angular";
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatDividerModule } from "@angular/material/divider";
@@ -15,10 +18,10 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { AgGridModule } from "ag-grid-angular";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BarGraphComponent } from "./components/bar-graph/bar-graph.component";
+import { ClusteredBarGraphComponent } from "./components/clustered-bar-graph/clustered-bar-graph.component";
 import { NotificationsPanelComponent } from "./components/notifications-panel/notifications-panel.component";
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
@@ -51,7 +54,8 @@ import { ViewVendorsComponent } from "./views/vendor/view-vendors/view-vendors.c
     TableComponent,
     PublicComponent,
     LogInComponent,
-    NotificationsPanelComponent
+    NotificationsPanelComponent,
+    ClusteredBarGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,9 @@ import { ViewVendorsComponent } from "./views/vendor/view-vendors/view-vendors.c
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     {

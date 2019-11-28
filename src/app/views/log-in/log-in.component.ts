@@ -12,6 +12,8 @@ export class LogInComponent implements OnInit {
   @Output() submitEmitter = new EventEmitter<boolean>();
   forgotPassword = false;
   resetPassword = false;
+  enteredEmail: string;
+  enteredPassword: string;
 
   constructor(
     @Inject(OVERLAY_DATA) public overlayProps,
@@ -30,6 +32,7 @@ export class LogInComponent implements OnInit {
       this.resetPassword = true;
       this.forgotPassword = false;
     } else {
+      this.authService.login(this.enteredEmail, this.enteredPassword);
       this.submitEmitter.emit(true);
       this.authService.changeRole(this.overlayProps.type.toLowerCase());
       this.router.navigate(["/dashboard"]);

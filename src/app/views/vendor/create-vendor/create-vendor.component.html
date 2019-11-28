@@ -1,1 +1,21 @@
-<p>create-vendor works!</p>
+<div class="flex-container">
+  <mat-card class="mat-typography create-vendor-container">
+    <mat-card-title class="padding-t10 padding-x10">Create New Vendor</mat-card-title>
+    <mat-card-subtitle class="padding-x10">Use this form to create a new vendor</mat-card-subtitle>
+    <mat-card-content class="padding-x10">
+      <form class="create-vendor-form">
+        <mat-form-field class="block">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" name="email" required />
+        </mat-form-field>
+        <mat-form-field class="block">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Password" name="password" required />
+        </mat-form-field>
+        <button mat-raised-button color="primary">
+          CREATE
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
