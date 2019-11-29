@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
+import { ColorPickerModule } from 'ngx-color-picker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
@@ -30,6 +31,7 @@ import { NotificationsPanelComponent } from './components/notifications-panel/no
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TableComponent } from './components/table/table.component';
+import { ThemePickerComponent } from './components/theme-picker/theme-picker.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { UserMenuBodyComponent } from './components/user-menu-body/user-menu-body.component';
 import { UserMenuHeaderComponent } from './components/user-menu-header/user-menu-header.component';
@@ -61,7 +63,8 @@ import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.c
     NotificationsPanelComponent,
     ClusteredBarGraphComponent,
     NotificationSnackbarComponent,
-    FooterComponent
+    FooterComponent,
+    ThemePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,8 @@ import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.c
     HttpClientModule,
     MatSnackBarModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    ColorPickerModule
   ],
   providers: [
     {
