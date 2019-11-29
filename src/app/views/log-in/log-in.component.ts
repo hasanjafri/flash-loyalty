@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from "@angular/core";
-import { Router } from "@angular/router";
-import { OVERLAY_DATA } from "src/app/config/overlay.config";
-import { AuthService } from "src/app/services/auth.service";
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { OVERLAY_DATA } from 'src/app/config/overlay.config';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: "app-log-in",
-  templateUrl: "./log-in.component.html",
-  styleUrls: ["./log-in.component.scss"]
+  selector: 'app-log-in',
+  templateUrl: './log-in.component.html',
+  styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
   @Output() submitEmitter = new EventEmitter<boolean>();
@@ -14,12 +14,9 @@ export class LogInComponent implements OnInit {
   resetPassword = false;
   enteredEmail: string;
   enteredPassword: string;
+  failedAttempts = 0;
 
-  constructor(
-    @Inject(OVERLAY_DATA) public overlayProps,
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(@Inject(OVERLAY_DATA) public overlayProps, private router: Router, private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -27,15 +24,20 @@ export class LogInComponent implements OnInit {
     this.forgotPassword = true;
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.forgotPassword) {
       this.resetPassword = true;
       this.forgotPassword = false;
     } else {
-      this.authService.login(this.enteredEmail, this.enteredPassword);
-      this.submitEmitter.emit(true);
-      this.authService.changeRole(this.overlayProps.type.toLowerCase());
-      this.router.navigate(["/dashboard"]);
+      const res = await this.authService.login(this.enteredEmail, this.enteredPassword);
+      console.log(res);
+      if (res) {
+        this.submitEmitter.emit(true);
+        this.authService.changeRole(this.overlayProps.type.toLowerCase());
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.failedAttempts += 1;
+      }
     }
   }
 }

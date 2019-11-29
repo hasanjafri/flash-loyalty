@@ -77,6 +77,10 @@
 
       .sidenav-title {
         text-decoration: none;
+
+        &.collapsed {
+          display: none;
+        }
       }
 
       .mat-toolbar-row,

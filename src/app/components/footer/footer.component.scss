@@ -1,0 +1,30 @@
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 0px;
+  background: #ffffff;
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0 25px;
+
+    .copyright {
+      display: flex;
+      margin: 0;
+      padding: 0 1.25rem 0 0;
+      font-size: 1rem;
+      font-weight: 400;
+      justify-content: center;
+      color: #74788d;
+
+      .link {
+        color: #74788d;
+        text-decoration: none;
+        display: inline-block;
+      }
+    }
+  }
+}

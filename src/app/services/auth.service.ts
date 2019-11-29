@@ -1,43 +1,52 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { NotificationsService } from './notifications.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthService {
-  currentRole = "admin";
-  currentRoleSub: BehaviorSubject<string> = new BehaviorSubject<string>(
-    this.currentRole
-  );
+  currentRole = 'admin';
+  currentToken: number;
+  currentRoleSub: BehaviorSubject<string> = new BehaviorSubject<string>(this.currentRole);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private notificationsService: NotificationsService) {}
 
   register(email, password) {
     if (!email || !password) {
       return;
     } else {
       this.http
-        .post("http://localhost:5000/auth/register", {
+        .post('http://localhost:5000/auth/register', {
           email: email,
           password: password
         })
         .toPromise()
-        .then(data => console.log(data));
+        .then((data) => console.log(data));
     }
   }
 
-  login(email, password) {
+  async login(email, password) {
     if (!email || !password) {
-      return;
+      return false;
     } else {
-      this.http
-        .post("http://localhost:5000/auth/login", {
+      const res = await this.http
+        .post('http://localhost:5000/auth/login', {
           email: email,
           password: password
         })
-        .toPromise()
-        .then(data => console.log(data));
+        .toPromise();
+
+      console.log(res);
+      if (res['status'] === '200') {
+        this.notificationsService.showNotification('Successfully logged in.');
+        this.currentToken = res['token'];
+        return true;
+      } else {
+        this.notificationsService.showNotification('Error! Incorrect email or password.');
+        return false;
+      }
     }
   }
 

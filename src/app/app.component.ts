@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,13 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   active: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.active = event.url === '/index' ? false : true;
+        if (event.url === '/index') {
+          this.authService.changeRole('');
+        }
       }
     });
   }

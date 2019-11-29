@@ -17,7 +17,7 @@
     <mat-toolbar class="sidenav-toolbar" [class.collapsed]="!isOpened">
       <mat-toolbar-row>
         <h2>
-          <a routerLink="dashboard" class="sidenav-title"> FLASH LOYALTY </a>
+          <a routerLink="dashboard" class="sidenav-title" [class.collapsed]="!isOpened"> LOYALTY REWARDS </a>
         </h2>
         <div fxFlex fxLayout fxLayoutAlign="flex-end">
           <mat-icon matListIcon (click)="toggleNav(); sidenav.toggle()" class="sidenav-toggle"
@@ -46,18 +46,20 @@
         <mat-icon matListIcon> dashboard </mat-icon>
         Dashboard
       </a> -->
-      <mat-expansion-panel class="sidenav-expansion-panel" *ngFor="let item of sideNavItems">
-        <mat-expansion-panel-header class="sidenav-header">
-          <mat-panel-title>
-            <mat-icon matListIcon> {{ item.icon }} </mat-icon>
-            {{ item.title }}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <a *ngFor="let routes of item.routes" mat-list-item [routerLink]="routes.route"
-          routerLinkActive="list-item-active">
-          {{ routes.title }}
-        </a>
-      </mat-expansion-panel>
+      <ng-container *ngFor="let item of sideNavItems">
+        <mat-expansion-panel class="sidenav-expansion-panel" *ngIf="item.supports.includes(currentRole)">
+          <mat-expansion-panel-header class="sidenav-header">
+            <mat-panel-title>
+              <mat-icon matListIcon> {{ item.icon }} </mat-icon>
+              {{ item.title }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a *ngFor="let routes of item.routes" mat-list-item [routerLink]="routes.route"
+            routerLinkActive="list-item-active">
+            {{ routes.title }}
+          </a>
+        </mat-expansion-panel>
+      </ng-container>
       <!-- <a mat-list-item (click)="sidenav.close()" [routerLink]="" routerLinkActive="list-item-active">
         <mat-icon matListIcon> power_off </mat-icon>
         Log Out
@@ -68,5 +70,6 @@
   <mat-sidenav-content [class.sidenav-opened]="isOpened" class="sidenav-content">
     <app-toolbar [active]="active"></app-toolbar>
     <router-outlet></router-outlet>
+    <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

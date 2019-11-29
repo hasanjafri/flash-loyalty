@@ -1,11 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
-import { AuthService } from "src/app/services/auth.service";
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: "app-sidenav",
-  templateUrl: "./sidenav.component.html",
-  styleUrls: ["./sidenav.component.scss"]
+  selector: 'app-sidenav',
+  templateUrl: './sidenav.component.html',
+  styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit, OnDestroy {
   isOpened: boolean;
@@ -16,7 +16,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
   get active(): boolean {
     return this._active;
   }
-  @Input("active")
+  @Input('active')
   set active(val: boolean) {
     this._active = val;
     this.isOpened = val;
@@ -25,44 +25,49 @@ export class SidenavComponent implements OnInit, OnDestroy {
   sideNavItems = [
     {
       routes: [
-        { title: "View Vendors", route: "view-vendors" },
-        { title: "Create New Vendor", route: "create-vendor" }
+        { title: 'View Vendors', route: 'view-vendors' },
+        { title: 'Create New Vendor', route: 'create-vendor' }
       ],
-      title: "Vendors",
-      icon: "business"
+      title: 'Vendors',
+      icon: 'business',
+      supports: ['admin']
     },
     {
       routes: [
-        { title: "View Promotions", route: "" },
-        { title: "Create New Promotion", route: "" }
+        { title: 'View Promotions', route: '' },
+        { title: 'Create New Promotion', route: '' }
       ],
-      title: "Promotions",
-      icon: "folder_special"
+      title: 'Promotions',
+      icon: 'folder_special',
+      supports: ['admin', 'vendor']
     },
     {
       routes: [
-        { title: "View Parties", route: "" },
-        { title: "Create New Party", route: "" }
+        { title: 'View Parties', route: '' },
+        { title: 'Create New Party', route: '' }
       ],
-      title: "Parties",
-      icon: "business_center"
+      title: 'Parties',
+      icon: 'business_center',
+      supports: ['admin', 'vendor']
     },
     {
       routes: [
-        { title: "View Users", route: "" },
-        { title: "Create New User", route: "" }
+        { title: 'Vendor Report', route: '' },
+        { title: 'Party Report', route: '' },
+        { title: 'Promotions Report', route: '' }
       ],
-      title: "Users",
-      icon: "verified_user"
+      title: 'Reports',
+      icon: 'file_copy',
+      supports: ['admin', 'vendor', 'customer']
     },
     {
       routes: [
-        { title: "Vendor Report", route: "" },
-        { title: "Party Report", route: "" },
-        { title: "Promotions Report", route: "" }
+        { title: 'System Settings', route: '' },
+        { title: 'My Settings', route: '' }
       ],
-      title: "Reports",
-      icon: "file_copy"
+      title: 'System Parameters',
+      icon: 'settings_system_daydream',
+      supports: ['admin']
     }
   ];
 
@@ -70,7 +75,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.currentRoleSub = await this.authService.currentRoleSub.subscribe(
-      currentRole => (this.currentRole = currentRole)
+      (currentRole) => (this.currentRole = currentRole)
     );
     console.log(this.currentRole);
   }
