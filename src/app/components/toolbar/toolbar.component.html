@@ -10,6 +10,10 @@
 
   <mat-toolbar-row>
 
+    <button mat-icon-button *ngIf="currentRole !== 'admin' && currentRole !== ''">
+      <img src="../../../assets/media/images/avatar.png" style="height: 33px; width: 33px;">
+    </button>
+
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
 
       <ul fxLayout fxLayoutGap="20px">
@@ -23,7 +27,8 @@
         <li>
           <button mat-button class="toolbar-icon" [matMenuTriggerFor]="userProfile">
             {{ active ? 'Hi, username' : 'Sign In' }}
-            <img src="../../../assets/media/images/avatar.png" style="height: 34px; width: 34px;">
+            <!-- <img *ngIf="currentRole === 'customer'" src="../../../assets/media/images/avatar.png"
+              style="height: 34px; width: 34px;"> -->
           </button>
           <mat-menu #userProfile="matMenu">
             <app-user-menu [active]="active"></app-user-menu>

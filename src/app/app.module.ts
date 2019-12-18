@@ -21,6 +21,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
@@ -100,7 +101,8 @@ import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.c
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: { siteKey: '6LclMMUUAAAAAF-vgQ2AlVYuXj6dbn20hDwnWHiM' } as RecaptchaSettings
-    }
+    },
+    CookieService
   ],
   bootstrap: [AppComponent],
   entryComponents: [SearchBarComponent, LogInComponent, NotificationsPanelComponent, NotificationSnackbarComponent]

@@ -29,7 +29,11 @@ export class LogInComponent implements OnInit {
       this.resetPassword = true;
       this.forgotPassword = false;
     } else {
-      const res = await this.authService.login(this.enteredEmail, this.enteredPassword);
+      const res = await this.authService.login(
+        this.enteredEmail,
+        this.enteredPassword,
+        this.overlayProps.type.toLowerCase()
+      );
       console.log(res);
       if (res) {
         this.submitEmitter.emit(true);
