@@ -12,9 +12,9 @@
   <mat-sidenav-content fxFlexFill>Main Content</mat-sidenav-content>
 </mat-sidenav-container> -->
 <mat-sidenav-container class="sidenav-container" autosize>
-  <mat-sidenav *ngIf="active" class="sidenav" [ngClass]="currentRole" #sidenav opened="isOpened" mode="side"
-    [class.collapsed-nav]="!isOpened">
-    <mat-toolbar class="sidenav-toolbar" [class.collapsed]="!isOpened">
+  <mat-sidenav *ngIf="active" class="sidenav" [style.background-color]="colors[1]" [ngClass]="currentRole" #sidenav
+    opened="isOpened" mode="side" [class.collapsed-nav]="!isOpened">
+    <mat-toolbar class="sidenav-toolbar" [style.background-color]="colors[2]" [class.collapsed]="!isOpened">
       <mat-toolbar-row>
         <h2>
           <a routerLink="dashboard" class="sidenav-title" [class.collapsed]="!isOpened"> LOYALTY REWARDS </a>
@@ -47,7 +47,8 @@
         Dashboard
       </a> -->
       <ng-container *ngFor="let item of sideNavItems">
-        <mat-expansion-panel class="sidenav-expansion-panel" *ngIf="item.supports.includes(currentRole)">
+        <mat-expansion-panel class="sidenav-expansion-panel" [style.background-color]="colors[1]"
+          *ngIf="item.supports.includes(currentRole)">
           <mat-expansion-panel-header class="sidenav-header">
             <mat-panel-title>
               <mat-icon matListIcon> {{ item.icon }} </mat-icon>

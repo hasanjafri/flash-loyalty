@@ -1,0 +1,20 @@
+.sign-in-btn {
+  margin-left: 21px;
+  margin-top: 11px;
+
+  &.customer {
+    color: white;
+    background-color: #FF5722;
+  }
+
+  &.vendor {
+    color: white;
+    background-color: #03A9F4;
+
+  }
+
+  &.admin {
+    color: white;
+    background-color: #607D8B;
+  }
+}

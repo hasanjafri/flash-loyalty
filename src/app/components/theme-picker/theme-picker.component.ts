@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-theme-picker',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./theme-picker.component.scss']
 })
 export class ThemePickerComponent implements OnInit {
-  color1: any;
-  color2: any;
+  colors = [];
+  colorsSub: Subscription;
 
-  constructor() {}
+  constructor(private themeService: ThemeService) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.colorsSub = await this.themeService.colorsChangeSub.subscribe((colors) => (this.colors = colors));
+  }
+
+  async applyTheme() {
+    await this.themeService.changeTheme(this.colors);
+  }
 }

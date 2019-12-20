@@ -12,125 +12,121 @@
   .sidenav {
     min-width: 240px;
 
-    &.admin {
-      background-color: #1e1e2d;
+    // &.admin {
+    //   background-color: #1e1e2d;
+    // }
+
+    // &.vendor {
+    //   background-color: #0277BD;
+
+    //   .sidenav-toolbar,
+    //   .sidenav-expansion-panel {
+    //     background-color: rgb(1, 73, 114);
+
+    //     &.collapsed {
+    //       background-color: #0277BD;
+    //     }
+    //   }
+    // }
+
+    // &.customer {
+    //   background-color: #D84315;
+
+    //   .sidenav-toolbar,
+    //   .sidenav-expansion-panel {
+    //     background-color: rgb(146, 46, 16);
+
+    //     &.collapsed {
+    //       background-color: #D84315;
+    //     }
+    //   }
+  }
+
+  &.collapsed-nav {
+    visibility: visible !important;
+    margin-left: 50px;
+  }
+
+  .collapsed-icon {
+    height: 64px;
+    width: 100%;
+    color: white;
+    display: block;
+    font-size: 35px;
+    text-align: right;
+    padding-top: 15px;
+    cursor: pointer;
+    padding-right: 8px;
+
+    &:hover {
+      background-color: #13131d;
     }
+  }
 
-    &.vendor {
-      background-color: #0277BD;
+  .sidenav-toolbar {
+    color: white;
 
-      .sidenav-toolbar,
-      .sidenav-expansion-panel {
-        background-color: rgb(1, 73, 114);
-
-        &.collapsed {
-          background-color: #0277BD;
-        }
-      }
-    }
-
-    &.customer {
-      background-color: #D84315;
-
-      .sidenav-toolbar,
-      .sidenav-expansion-panel {
-        background-color: rgb(146, 46, 16);
-
-        &.collapsed {
-          background-color: #D84315;
-        }
-      }
-    }
-
-    &.collapsed-nav {
-      visibility: visible !important;
-      margin-left: 50px;
-    }
-
-    .collapsed-icon {
-      height: 64px;
-      width: 100%;
-      color: white;
-      display: block;
-      font-size: 35px;
-      text-align: right;
-      padding-top: 15px;
-      cursor: pointer;
-      padding-right: 8px;
+    &.collapsed {
 
       &:hover {
         background-color: #13131d;
       }
     }
 
-    .sidenav-toolbar {
-      color: white;
-      background-color: #13131d;
+    .sidenav-title {
+      text-decoration: none;
 
       &.collapsed {
-        background-color: #1e1e2d;
-
-        &:hover {
-          background-color: #13131d;
-        }
-      }
-
-      .sidenav-title {
-        text-decoration: none;
-
-        &.collapsed {
-          display: none;
-        }
-      }
-
-      .mat-toolbar-row,
-      .mat-toolbar-single-row {
-        padding: none !important;
-      }
-
-      .sidenav-toggle {
-        cursor: pointer;
-
-        &.collapsed-nav {
-          transform: rotate(180deg);
-        }
+        display: none;
       }
     }
 
-    a {
-      color: white;
+    .mat-toolbar-row,
+    .mat-toolbar-single-row {
+      padding: none !important;
     }
 
-    .sidenav-expansion-panel {
-      background-color: #1e1e2d;
+    .sidenav-toggle {
+      cursor: pointer;
 
-      &:hover {
-        background-color: #13131d;
+      &.collapsed-nav {
+        transform: rotate(180deg);
       }
+    }
+  }
 
-      mat-panel-title {
-        &.mat-expansion-panel-header-title {
-          color: white;
-        }
-      }
+  a {
+    color: white;
+  }
 
-      &.mat-expansion-panel:not([class*='mat-elevation-z']) {
-        box-shadow: none;
+  .sidenav-expansion-panel {
 
-        &:not(.mat-expanded):not([aria-disabled='true']) .mat-expansion-panel-header:hover {
-          background: none !important;
-        }
-      }
+    &:hover {
+      background-color: #13131d;
+    }
 
-      .mat-icon {
-        height: 16px;
-        width: 16px;
-        margin-right: 15px;
-      }
-
-      ::ng-deep .sidenav-header>.mat-expansion-indicator:after {
+    mat-panel-title {
+      &.mat-expansion-panel-header-title {
         color: white;
       }
+    }
+
+    &.mat-expansion-panel:not([class*='mat-elevation-z']) {
+      box-shadow: none;
+
+      &:not(.mat-expanded):not([aria-disabled='true']) .mat-expansion-panel-header:hover {
+        background: none !important;
+      }
+    }
+
+    .mat-icon {
+      height: 16px;
+      width: 16px;
+      margin-right: 15px;
+    }
+
+    ::ng-deep .sidenav-header>.mat-expansion-indicator:after {
+      color: white;
     }
   }
 }

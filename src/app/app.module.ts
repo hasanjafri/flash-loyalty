@@ -38,6 +38,7 @@ import { UserMenuBodyComponent } from './components/user-menu-body/user-menu-bod
 import { UserMenuHeaderComponent } from './components/user-menu-header/user-menu-header.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { OVERLAY_DATA } from './config/overlay.config';
+import { AuthGuardGuard } from './guards/auth-guard.guard';
 import { OverlayService } from './services/overlay.service';
 import { HomeComponent } from './views/home/home.component';
 import { LogInComponent } from './views/log-in/log-in.component';
@@ -102,9 +103,16 @@ import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.c
       provide: RECAPTCHA_SETTINGS,
       useValue: { siteKey: '6LclMMUUAAAAAF-vgQ2AlVYuXj6dbn20hDwnWHiM' } as RecaptchaSettings
     },
-    CookieService
+    CookieService,
+    AuthGuardGuard
   ],
   bootstrap: [AppComponent],
-  entryComponents: [SearchBarComponent, LogInComponent, NotificationsPanelComponent, NotificationSnackbarComponent]
+  entryComponents: [
+    SearchBarComponent,
+    LogInComponent,
+    NotificationsPanelComponent,
+    NotificationSnackbarComponent,
+    ThemePickerComponent
+  ]
 })
 export class AppModule {}

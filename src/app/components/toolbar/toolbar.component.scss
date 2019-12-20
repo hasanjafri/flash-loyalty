@@ -4,10 +4,8 @@
   left: 0;
   right: 0;
   z-index: 998;
-  background-color: #FFFFFF;
 
   &.vendor {
-    background-color: #03A9F4;
 
     .toolbar-icon {
       color: white !important;
@@ -15,7 +13,6 @@
   }
 
   &.customer {
-    background-color: #FF5722;
 
     .toolbar-icon {
       color: white !important;

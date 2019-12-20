@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
 import { NotificationsService } from './notifications.service';
@@ -8,13 +9,17 @@ import { NotificationsService } from './notifications.service';
   providedIn: 'root'
 })
 export class AuthService {
-  currentRole = 'admin';
+  currentRole = '';
   currentRoleSub: BehaviorSubject<string> = new BehaviorSubject<string>(this.currentRole);
+  themeChangeSub = new BehaviorSubject([]);
+  isAuthenticated = false;
+  authSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isAuthenticated);
 
   constructor(
     private http: HttpClient,
     private notificationsService: NotificationsService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
   ) {}
 
   register(email, password, userType) {
@@ -47,14 +52,21 @@ export class AuthService {
       console.log(res);
       if (res['status'] === '200') {
         this.notificationsService.showNotification('Successfully logged in.');
-        this.cookieService.set('api_token', res['token'], 2 / 1440);
+        this.cookieService.set('api_token', res['token'], 1 / 4);
+        localStorage.setItem('api_token', res['token']);
+        this.themeChangeSub.next(res['colors']);
         if (res['token'].includes('admin')) {
           this.currentRole = 'admin';
+          this.currentRoleSub.next('admin');
         } else if (res['token'].includes('vendor')) {
           this.currentRole = 'vendor';
+          this.currentRoleSub.next('vendor');
         } else if (res['token'].includes('customer')) {
           this.currentRole = 'customer';
+          this.currentRoleSub.next('customer');
         }
+        this.isAuthenticated = true;
+        this.authSub.next(true);
         return true;
       } else {
         this.notificationsService.showNotification('Error! Incorrect email or password.');
@@ -64,23 +76,34 @@ export class AuthService {
   }
 
   async checkAuthenticated() {
-    const currentToken = this.cookieService.get('api_token');
+    const currentToken = localStorage.getItem('api_token');
     if (!currentToken) {
+      console.log('yeyeyeyeyeye123123');
       return false;
     } else {
       const res = await this.http.post('http://localhost:5000/auth/check', { token: currentToken }).toPromise();
       if (res['status'] === '200') {
         this.notificationsService.showNotification('Successfully logged in.');
-        this.cookieService.set('api_token', res['token'], 2 / 1440);
+        this.cookieService.set('api_token', res['token'], 1 / 4);
+        localStorage.setItem('api_token', res['token']);
+        this.themeChangeSub.next(res['colors']);
+        console.log(res['colors']);
         if (res['token'].includes('admin')) {
           this.currentRole = 'admin';
+          this.currentRoleSub.next('admin');
         } else if (res['token'].includes('vendor')) {
           this.currentRole = 'vendor';
+          this.currentRoleSub.next('vendor');
         } else if (res['token'].includes('customer')) {
           this.currentRole = 'customer';
+          this.currentRoleSub.next('customer');
         }
+        this.isAuthenticated = true;
+        this.authSub.next(true);
         return true;
       } else {
+        this.authSub.next(false);
+        this.router.navigate(['/index']);
         return false;
       }
     }
@@ -89,5 +112,11 @@ export class AuthService {
   changeRole(newRole) {
     this.currentRole = newRole;
     this.currentRoleSub.next(this.currentRole);
+    if (newRole === '') {
+      this.isAuthenticated = false;
+      this.authSub.next(false);
+      localStorage.removeItem('api_token');
+      this.router.navigate(['/index']);
+    }
   }
 }

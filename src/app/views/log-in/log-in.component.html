@@ -1,45 +1,17 @@
-<mat-card
-  class="mat-typography"
-  [class.customer]="overlayProps.type === 'CUSTOMER'"
-  [class.vendor]="overlayProps.type === 'VENDOR'"
-  [class.admin]="overlayProps.type === 'ADMIN'"
->
-  <mat-card-title
-    class="padding-t10 padding-x10"
-    [class.customer]="overlayProps.type === 'CUSTOMER'"
-    [class.vendor]="overlayProps.type === 'VENDOR'"
-    [class.admin]="overlayProps.type === 'ADMIN'"
-  >
-    {{ forgotPassword ? 'Reset your password' : 'Login as ' + overlayProps.type }}
+<mat-card class="mat-typography" [ngClass]="type">
+  <mat-card-title class="padding-t10 padding-x10" [ngClass]="type">
+    {{ forgotPassword ? 'Reset your password' : 'Login as ' + type }}
   </mat-card-title>
   <mat-card-content class="padding-x10">
     <form *ngIf="!forgotPassword" class="login-form">
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
-        <input
-          [(ngModel)]="enteredEmail"
-          [class.customer]="overlayProps.type === 'CUSTOMER'"
-          [class.vendor]="overlayProps.type === 'VENDOR'"
-          [class.admin]="overlayProps.type === 'ADMIN'"
-          matInput
-          placeholder="Email"
-          name="email"
-          required
-        />
+        <input [(ngModel)]="enteredEmail" [ngClass]="type" matInput placeholder="Email" name="email" required />
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
-        <input
-          [(ngModel)]="enteredPassword"
-          [class.customer]="overlayProps.type === 'CUSTOMER'"
-          [class.vendor]="overlayProps.type === 'VENDOR'"
-          [class.admin]="overlayProps.type === 'ADMIN'"
-          matInput
-          placeholder="Password"
-          name="password"
-          type="password"
-          required
-        />
+        <input [(ngModel)]="enteredPassword" [ngClass]="type" matInput placeholder="Password" name="password"
+          type="password" required />
       </mat-form-field>
       <re-captcha *ngIf="failedAttempts >= 3" name="captcha" required></re-captcha>
       <a class="forgot-password" (click)="onClickForgotPassword()">Forgot your password?</a>
@@ -47,21 +19,15 @@
     <form *ngIf="forgotPassword" class="forgot-password-form">
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
-        <input
-          [class.customer]="overlayProps.type === 'CUSTOMER'"
-          [class.vendor]="overlayProps.type === 'VENDOR'"
-          [class.admin]="overlayProps.type === 'ADMIN'"
-          matInput
-          placeholder="Email"
-          name="email"
-          required
-        />
+        <input [ngClass]="type" matInput placeholder="Email" name="email" required />
       </mat-form-field>
     </form>
   </mat-card-content>
+  {{ failedAttempts > 3 ? 'Your account has been locked.' : '' }}
   <mat-card-actions class="padding-x10">
     <button mat-raised-button type="submit" color="primary" class="full-width" (click)="onSubmit()">
       {{ forgotPassword ? 'SUBMIT' : 'LOGIN' }}
     </button>
   </mat-card-actions>
+  <app-footer></app-footer>
 </mat-card>
