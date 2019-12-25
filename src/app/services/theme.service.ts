@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { NotificationsService } from './notifications.service';
 
@@ -39,7 +40,7 @@ export class ThemeService implements OnDestroy {
     const user_id = localStorage.getItem('api_token');
     if (user_id) {
       const res = await this.http
-        .post('http://localhost:5000/auth/changetheme', {
+        .post(`${environment.serverUrl}changetheme`, {
           user_id: user_id,
           userType: this.currentRole,
           primary_color: colors[0],

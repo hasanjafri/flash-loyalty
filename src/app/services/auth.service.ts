@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { GraphDataService } from './graph-data.service';
 import { NotificationsService } from './notifications.service';
 
@@ -32,7 +33,7 @@ export class AuthService {
       return;
     } else {
       this.http
-        .post('http://localhost:5000/auth/register', {
+        .post(`${environment.serverUrl}register`, {
           email: email,
           password: password,
           userType: userType
@@ -47,7 +48,7 @@ export class AuthService {
       return false;
     } else {
       const res = await this.http
-        .post('http://localhost:5000/auth/login', {
+        .post(`${environment.serverUrl}login`, {
           email: email,
           password: password,
           userType: userType
@@ -93,7 +94,7 @@ export class AuthService {
       console.log('yeyeyeyeyeye123123');
       return false;
     } else {
-      const res = await this.http.post('http://localhost:5000/auth/check', { token: currentToken }).toPromise();
+      const res = await this.http.post(`${environment.serverUrl}check`, { token: currentToken }).toPromise();
       if (res['status'] === '200') {
         this.graphDataService.pullGraphData();
         this.notificationsService.showNotification('Successfully logged in.');

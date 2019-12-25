@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class GraphDataService {
       console.log('yeyeyeyeyeye123123');
       return false;
     } else {
-      const res = await this.http.get('http://localhost:5000/auth/loadTableData').toPromise();
+      const res = await this.http.get(`${environment.serverUrl}loadTableData`).toPromise();
       if (res['status'] === '200') {
         this.graphData = res['data'];
         this.graphDataSub.next(this.graphData);
