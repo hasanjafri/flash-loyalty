@@ -58,7 +58,7 @@ export class AuthService {
       if (res['status'] === '200') {
         this.graphDataService.pullGraphData();
         this.notificationsService.showNotification('Successfully logged in.');
-        this.cookieService.set('api_token', res['token'], 1 / 4);
+        // this.cookieService.set('api_token', res['token'], 1 / 4);
         localStorage.setItem('api_token', res['token']);
         localStorage.setItem('alt_token', res['alt_token']);
         this.themeChangeSub.next(res['colors']);
@@ -97,23 +97,19 @@ export class AuthService {
       if (res['status'] === '200') {
         this.graphDataService.pullGraphData();
         this.notificationsService.showNotification('Successfully logged in.');
-        this.cookieService.set('api_token', res['token'], 1 / 4);
+        // this.cookieService.set('api_token', res['token'], 1 / 4);
         localStorage.setItem('api_token', res['token']);
-        localStorage.setItem('alt_token', res['alt_token']);
         this.themeChangeSub.next(res['colors']);
         console.log(res['colors']);
         if (res['token'].includes('admin')) {
           this.currentRole = 'admin';
           this.currentRoleSub.next('admin');
-          this.altTokenSub.next('both');
         } else if (res['token'].includes('vendor')) {
           this.currentRole = 'vendor';
           this.currentRoleSub.next('vendor');
-          this.altTokenSub.next(res['alt_token']);
         } else if (res['token'].includes('customer')) {
           this.currentRole = 'customer';
           this.currentRoleSub.next('customer');
-          this.altTokenSub.next(res['alt_token']);
         }
         this.email = res['email'];
         this.emailChangeSub.next(this.email);

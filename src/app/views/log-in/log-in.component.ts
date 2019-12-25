@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OVERLAY_DATA } from 'src/app/config/overlay.config';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,7 +9,7 @@ import { NotificationsService } from 'src/app/services/notifications.service';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
-export class LogInComponent implements OnInit {
+export class LogInComponent {
   @Input() type: string;
   @Output() submitEmitter = new EventEmitter<boolean>();
 
@@ -25,14 +25,15 @@ export class LogInComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private notificationService: NotificationsService
-  ) {}
-
-  ngOnInit() {
-    // this.type = this.route.snapshot.paramMap.get('type');
+  ) {
     if (this.overlayProps) {
       this.type = this.overlayProps.type;
     }
   }
+
+  // ngOnInit() {
+  //   this.type = this.route.snapshot.paramMap.get('type');
+  // }
 
   onClickForgotPassword() {
     this.forgotPassword = true;
