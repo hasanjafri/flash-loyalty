@@ -1,5 +1,5 @@
 <div class="home-container">
-  <div class="home-view">
+  <div *ngIf="graphData.length > 1" class="home-view">
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="20">
       <mat-grid-tile class="bar-graph-tile">
         <!-- <app-bar-graph [data]="barGraphOne" [id]="'1'" [graphTitle]="'Transactions Processed'" [xLabel]="'month'"
@@ -7,16 +7,16 @@
         <app-clustered-bar-graph></app-clustered-bar-graph>
       </mat-grid-tile>
       <mat-grid-tile class="bar-graph-tile">
-        <app-bar-graph [data]="barGraphTwo" [id]="'2'" [graphTitle]="'Vendor Signups'" [xLabel]="'month'"
+        <app-bar-graph [data]="graphData[0]" [id]="'2'" [graphTitle]="'Vendor Signups'" [xLabel]="'month'"
           [yLabel]="'signups'"></app-bar-graph>
       </mat-grid-tile>
       <mat-grid-tile class="bar-graph-tile">
-        <app-bar-graph [data]="barGraphThree" [id]="'3'" [graphTitle]="'Vendor Registrations by Vendor Type'"
+        <app-bar-graph [data]="graphData[1]" [id]="'3'" [graphTitle]="'Vendor Registrations by Vendor Type'"
           [xLabel]="'vendorType'" [yLabel]="'signups'">
         </app-bar-graph>
       </mat-grid-tile>
       <mat-grid-tile class="bar-graph-tile">
-        <app-bar-graph [data]="barGraphFour" [id]="'4'" [graphTitle]="'Customer Signups'" [xLabel]="'month'"
+        <app-bar-graph [data]="graphData[2]" [id]="'4'" [graphTitle]="'Customer Signups'" [xLabel]="'month'"
           [yLabel]="'signups'"></app-bar-graph>
       </mat-grid-tile>
     </mat-grid-list>

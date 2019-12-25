@@ -13,6 +13,8 @@ export class UserMenuBodyComponent implements OnInit, OnDestroy {
   @Input() active: boolean;
   currentRole: string;
   currentRoleSub: Subscription;
+  altToken: string;
+  altTokenSub: Subscription;
 
   menuLinks = [
     {
@@ -43,19 +45,36 @@ export class UserMenuBodyComponent implements OnInit, OnDestroy {
     this.currentRoleSub = await this.authService.currentRoleSub.subscribe(
       (currentRole) => (this.currentRole = currentRole)
     );
+    this.altTokenSub = await this.authService.altTokenSub.subscribe((altToken) => (this.altToken = altToken));
   }
 
   ngOnDestroy() {
     if (this.currentRoleSub) {
       this.currentRoleSub.unsubscribe();
     }
+    if (this.altTokenSub) {
+      this.altTokenSub.unsubscribe();
+    }
   }
 
-  openLoginModal(type: string) {
-    if (this.active) {
+  // openLoginModal(type: string) {
+  //   if (this.active) {
+  //     this.authService.changeRole(type);
+  //   } else {
+  //     this.overlayService.open(LogInComponent, null, { type: type.toUpperCase() });
+  //   }
+  // }
+
+  handleLogin(type: string) {
+    if (type === '') {
       this.authService.changeRole(type);
-    } else {
-      this.overlayService.open(LogInComponent, null, { type: type.toUpperCase() });
+    }
+    if (this.currentRole === 'admin') {
+      return;
+    } else if (this.currentRole === 'vendor') {
+      this.overlayService.open(LogInComponent, null, { type: type });
+    } else if (this.currentRole === 'customer') {
+      this.overlayService.open(LogInComponent, null, { type: type });
     }
   }
 }

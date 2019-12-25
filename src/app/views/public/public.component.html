@@ -3,9 +3,11 @@
     Loyalty Rewards
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
       <ng-container *ngFor="let item of ['customer', 'vendor', 'admin']">
-        <button (click)="openLogin(item)" mat-flat-button class="sign-in-btn" [ngClass]="item"> SIGN IN AS
+        <button (click)="changeType(item)" mat-flat-button class="sign-in-btn" [ngClass]="item"> SIGN IN AS
           {{ item.toUpperCase() }} </button>
       </ng-container>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+<app-log-in *ngIf="type" [type]="type"></app-log-in>
+<app-footer></app-footer>

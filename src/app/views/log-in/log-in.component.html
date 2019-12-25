@@ -1,6 +1,6 @@
 <mat-card class="mat-typography" [ngClass]="type">
   <mat-card-title class="padding-t10 padding-x10" [ngClass]="type">
-    {{ forgotPassword ? 'Reset your password' : 'Login as ' + type }}
+    {{ forgotPassword ?  'Reset your password' :  'Login as ' + type }}
   </mat-card-title>
   <mat-card-content class="padding-x10">
     <form *ngIf="!forgotPassword" class="login-form">
@@ -29,5 +29,5 @@
       {{ forgotPassword ? 'SUBMIT' : 'LOGIN' }}
     </button>
   </mat-card-actions>
-  <app-footer></app-footer>
+  <!-- <app-footer></app-footer> -->
 </mat-card>

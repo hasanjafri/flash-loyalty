@@ -3,23 +3,28 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
+import { GraphDataService } from './graph-data.service';
 import { NotificationsService } from './notifications.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  email = 'username';
+  emailChangeSub: BehaviorSubject<string> = new BehaviorSubject<string>(this.email);
   currentRole = '';
   currentRoleSub: BehaviorSubject<string> = new BehaviorSubject<string>(this.currentRole);
   themeChangeSub = new BehaviorSubject([]);
   isAuthenticated = false;
   authSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isAuthenticated);
+  altTokenSub: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(
     private http: HttpClient,
     private notificationsService: NotificationsService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private graphDataService: GraphDataService
   ) {}
 
   register(email, password, userType) {
@@ -51,20 +56,27 @@ export class AuthService {
 
       console.log(res);
       if (res['status'] === '200') {
+        this.graphDataService.pullGraphData();
         this.notificationsService.showNotification('Successfully logged in.');
         this.cookieService.set('api_token', res['token'], 1 / 4);
         localStorage.setItem('api_token', res['token']);
+        localStorage.setItem('alt_token', res['alt_token']);
         this.themeChangeSub.next(res['colors']);
         if (res['token'].includes('admin')) {
           this.currentRole = 'admin';
           this.currentRoleSub.next('admin');
+          this.altTokenSub.next('both');
         } else if (res['token'].includes('vendor')) {
           this.currentRole = 'vendor';
           this.currentRoleSub.next('vendor');
+          this.altTokenSub.next(res['alt_token']);
         } else if (res['token'].includes('customer')) {
           this.currentRole = 'customer';
           this.currentRoleSub.next('customer');
+          this.altTokenSub.next(res['alt_token']);
         }
+        this.email = res['email'];
+        this.emailChangeSub.next(this.email);
         this.isAuthenticated = true;
         this.authSub.next(true);
         return true;
@@ -83,21 +95,28 @@ export class AuthService {
     } else {
       const res = await this.http.post('http://localhost:5000/auth/check', { token: currentToken }).toPromise();
       if (res['status'] === '200') {
+        this.graphDataService.pullGraphData();
         this.notificationsService.showNotification('Successfully logged in.');
         this.cookieService.set('api_token', res['token'], 1 / 4);
         localStorage.setItem('api_token', res['token']);
+        localStorage.setItem('alt_token', res['alt_token']);
         this.themeChangeSub.next(res['colors']);
         console.log(res['colors']);
         if (res['token'].includes('admin')) {
           this.currentRole = 'admin';
           this.currentRoleSub.next('admin');
+          this.altTokenSub.next('both');
         } else if (res['token'].includes('vendor')) {
           this.currentRole = 'vendor';
           this.currentRoleSub.next('vendor');
+          this.altTokenSub.next(res['alt_token']);
         } else if (res['token'].includes('customer')) {
           this.currentRole = 'customer';
           this.currentRoleSub.next('customer');
+          this.altTokenSub.next(res['alt_token']);
         }
+        this.email = res['email'];
+        this.emailChangeSub.next(this.email);
         this.isAuthenticated = true;
         this.authSub.next(true);
         return true;

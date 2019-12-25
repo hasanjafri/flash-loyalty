@@ -18,6 +18,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
   currentRole: string;
   currentRoleSub: Subscription;
+  email: string;
+  emailSub: Subscription;
   colors = ['#FFFFFF'];
   colorsSub: Subscription;
 
@@ -47,6 +49,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       (currentRole) => (this.currentRole = currentRole)
     );
     this.colorsSub = await this.themeService.colorsChangeSub.subscribe((colors) => (this.colors = colors));
+    this.emailSub = await this.authService.emailChangeSub.subscribe((email) => (this.email = email));
   }
 
   ngOnDestroy() {
@@ -55,6 +58,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }
     if (this.colorsSub) {
       this.colorsSub.unsubscribe();
+    }
+    if (this.emailSub) {
+      this.emailSub.unsubscribe();
     }
   }
 

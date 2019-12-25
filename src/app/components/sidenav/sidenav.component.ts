@@ -9,7 +9,7 @@ import { ThemeService } from 'src/app/services/theme.service';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit, OnDestroy {
-  isOpened: boolean;
+  isOpened = true;
   currentRole: string;
   currentRoleSub: Subscription;
   colors = [];
