@@ -19,12 +19,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbCarouselModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 import { ClusteredBarGraphComponent } from './components/clustered-bar-graph/clustered-bar-graph.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotificationSnackbarComponent } from './components/notification-snackbar/notification-snackbar.component';
@@ -32,6 +34,7 @@ import { NotificationsPanelComponent } from './components/notifications-panel/no
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TableComponent } from './components/table/table.component';
+import { TestimonialCardComponent } from './components/testimonial-card/testimonial-card.component';
 import { ThemePickerComponent } from './components/theme-picker/theme-picker.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { UserMenuBodyComponent } from './components/user-menu-body/user-menu-body.component';
@@ -43,6 +46,7 @@ import { OverlayService } from './services/overlay.service';
 import { HomeComponent } from './views/home/home.component';
 import { LogInComponent } from './views/log-in/log-in.component';
 import { PublicComponent } from './views/public/public.component';
+import { SignInComponent } from './views/sign-in/sign-in.component';
 import { CreateVendorComponent } from './views/vendor/create-vendor/create-vendor.component';
 import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.component';
 
@@ -66,7 +70,10 @@ import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.c
     ClusteredBarGraphComponent,
     NotificationSnackbarComponent,
     FooterComponent,
-    ThemePickerComponent
+    ThemePickerComponent,
+    CarouselComponent,
+    SignInComponent,
+    TestimonialCardComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +99,9 @@ import { ViewVendorsComponent } from './views/vendor/view-vendors/view-vendors.c
     MatSnackBarModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    ColorPickerModule
+    ColorPickerModule,
+    NgbCarouselModule,
+    NgbRatingModule
   ],
   providers: [
     {

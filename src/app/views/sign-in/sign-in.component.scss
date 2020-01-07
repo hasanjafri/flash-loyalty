@@ -1,0 +1,17 @@
+.sign-in-btn {
+  margin-left: 21px;
+  margin-top: 11px;
+  color: lightslategray;
+}
+
+.sign-in-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 800px;
+
+  .sign-in-card {
+    width: 600px;
+    margin: 25px 0px;
+  }
+}

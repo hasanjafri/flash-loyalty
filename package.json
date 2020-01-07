@@ -25,6 +25,7 @@
     "@angular/platform-browser": "~8.2.13",
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "ag-grid-angular": "^21.2.2",
     "ag-grid-community": "^21.2.2",
     "core-js": "^2.5.4",

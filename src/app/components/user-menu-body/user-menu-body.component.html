@@ -8,28 +8,47 @@
       </div>
     </a>
   </ng-container>
-  <!-- <ng-container *ngFor="let item of ['customer', 'vendor', 'admin']">
+  <!-- <ng-container *ngFor="let item of ['party', 'vendor', 'admin']">
     <button *ngIf="altToken !== '' && !currentRole.includes(item)" (click)="openLoginModal(item)" mat-flat-button
       class="user-menu-btn" [ngClass]="item">
       SIGN IN AS {{ item.toUpperCase() }}
     </button>
   </ng-container> -->
   <button *ngIf="currentRole === 'admin'" (click)="handleLogin('admin')" mat-flat-button class="user-menu-btn admin">
-    SIGN IN AS ADMIN </button>
-  <button *ngIf="currentRole === 'customer' && altToken !== '' || currentRole === 'admin'"
-    (click)="handleLogin('vendor')" mat-flat-button class="user-menu-btn vendor"> SIGN IN AS VENDOR </button>
-  <button *ngIf="currentRole === 'vendor' && altToken !== '' || currentRole === 'admin'"
-    (click)="handleLogin('customer')" mat-flat-button class="user-menu-btn customer"> SIGN IN AS CUSTOMER </button>
-  <!-- <button [disabled]="currentRole === 'customer'" (click)="changeRole('customer')" mat-stroked-button
-    class="sign-out-btn">SIGN IN AS CUSTOMER</button>
+    SIGN IN AS ADMIN
+  </button>
+  <button
+    *ngIf="(currentRole === 'party' && altToken !== '') || currentRole === 'admin'"
+    (click)="handleLogin('vendor')"
+    mat-flat-button
+    class="user-menu-btn vendor"
+  >
+    SIGN IN AS VENDOR
+  </button>
+  <button
+    *ngIf="(currentRole === 'vendor' && altToken !== '') || currentRole === 'admin'"
+    (click)="handleLogin('party')"
+    mat-flat-button
+    class="user-menu-btn party"
+  >
+    SIGN IN AS PARTY
+  </button>
+  <!-- <button [disabled]="currentRole === 'party'" (click)="changeRole('party')" mat-stroked-button
+    class="sign-out-btn">SIGN IN AS party</button>
   <button [disabled]="currentRole === 'vendor'" (click)="changeRole('vendor')" mat-flat-button color="accent"
     class="sign-out-btn">SIGN IN AS
     VENDOR</button>
   <button [disabled]="currentRole === 'admin'" (click)="changeRole('admin')" mat-flat-button color="primary"
     class="sign-out-btn">SIGN IN AS
     ADMIN</button> -->
-  <button *ngIf="currentRole !== ''" mat-stroked-button color="warn" class="user-menu-btn" [routerLink]="'index'"
-    (click)="handleLogin('')">
+  <button
+    *ngIf="currentRole !== ''"
+    mat-stroked-button
+    color="warn"
+    class="user-menu-btn"
+    [routerLink]="'index'"
+    (click)="handleLogin('')"
+  >
     SIGN OUT
   </button>
 </div>

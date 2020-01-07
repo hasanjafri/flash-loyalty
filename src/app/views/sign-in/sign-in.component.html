@@ -1,0 +1,54 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    Loyalty Rewards
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+      <ng-container *ngFor="let item of ['SIGN IN', 'REGISTER']">
+        <button mat-flat-button class="sign-in-btn"> {{ item }} </button>
+      </ng-container>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="sign-in-container">
+  <mat-card class="mat-typography sign-in-card">
+    <mat-card-title class="padding-t10 padding-x10">
+      {{ forgotPassword ?  'Reset your password' :  'Sign In' }}
+    </mat-card-title>
+    <mat-card-content class="padding-x10">
+      <form *ngIf="!forgotPassword" class="login-form">
+        <mat-form-field class="full-width">
+          <mat-label>Type</mat-label>
+          <mat-select [(ngModel)]="type" name="type">
+            <mat-option *ngFor="let option of ['ADMIN', 'VENDOR', 'PARTY']" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input [(ngModel)]="enteredEmail" matInput placeholder="Email" name="email" required />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input [(ngModel)]="enteredPassword" matInput placeholder="Password" name="password" type="password"
+            required />
+        </mat-form-field>
+        <re-captcha *ngIf="failedAttempts >= 3" name="captcha" required></re-captcha>
+        <a class="forgot-password" (click)="onClickForgotPassword()">Forgot your password?</a>
+      </form>
+      <form *ngIf="forgotPassword" class="forgot-password-form">
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" name="email" required />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    {{ failedAttempts > 3 ? 'Your account has been locked.' : '' }}
+    <mat-card-actions class="padding-x10">
+      <button mat-raised-button type="submit" color="primary" class="full-width" (click)="onSubmit()">
+        {{ forgotPassword ? 'SUBMIT' : 'LOGIN' }}
+      </button>
+    </mat-card-actions>
+    <!-- <app-footer></app-footer> -->
+  </mat-card>
+</div>
+<app-footer></app-footer>

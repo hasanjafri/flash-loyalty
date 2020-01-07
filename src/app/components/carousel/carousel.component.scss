@@ -1,0 +1,15 @@
+.carousel-img {
+  background-size: cover;
+  height: 500px;
+
+  img {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+}
+
+.carousel-caption {
+  color: white;
+}

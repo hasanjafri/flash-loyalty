@@ -73,7 +73,7 @@ export class UserMenuBodyComponent implements OnInit, OnDestroy {
       return;
     } else if (this.currentRole === 'vendor') {
       this.overlayService.open(LogInComponent, null, { type: type });
-    } else if (this.currentRole === 'customer') {
+    } else if (this.currentRole === 'party') {
       this.overlayService.open(LogInComponent, null, { type: type });
     }
   }

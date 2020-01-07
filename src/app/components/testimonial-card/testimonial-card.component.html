@@ -1,0 +1,7 @@
+<mat-card *ngFor="let testimonial of testimonials" class="mat-typography">
+  <mat-card-content class="padding-x10">
+    <img [src]="testimonial.src" [alt]="testimonial.alt">
+    <p><i>One of the best business decisions!</i></p>
+    <ngb-rating [(rate)]="testimonial.rating" [readonly]="true"></ngb-rating>
+  </mat-card-content>
+</mat-card>

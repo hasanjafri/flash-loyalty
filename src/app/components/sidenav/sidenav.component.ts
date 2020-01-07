@@ -61,7 +61,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
       ],
       title: 'Reports',
       icon: 'file_copy',
-      supports: ['admin', 'vendor', 'customer']
+      supports: ['admin', 'vendor', 'party']
     },
     {
       routes: [

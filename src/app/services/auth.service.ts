@@ -43,7 +43,7 @@ export class AuthService {
     }
   }
 
-  async login(email, password, userType) {
+  async login(email: string, password: string, userType: string) {
     if (!email || !password || !userType) {
       return false;
     } else {
@@ -51,7 +51,7 @@ export class AuthService {
         .post(`${environment.serverUrl}login`, {
           email: email,
           password: password,
-          userType: userType
+          userType: userType.toLowerCase()
         })
         .toPromise();
 
@@ -62,6 +62,7 @@ export class AuthService {
         // this.cookieService.set('api_token', res['token'], 1 / 4);
         localStorage.setItem('api_token', res['token']);
         localStorage.setItem('alt_token', res['alt_token']);
+        localStorage.setItem('session_id', res['session_id']);
         this.themeChangeSub.next(res['colors']);
         if (res['token'].includes('admin')) {
           this.currentRole = 'admin';
@@ -71,9 +72,9 @@ export class AuthService {
           this.currentRole = 'vendor';
           this.currentRoleSub.next('vendor');
           this.altTokenSub.next(res['alt_token']);
-        } else if (res['token'].includes('customer')) {
-          this.currentRole = 'customer';
-          this.currentRoleSub.next('customer');
+        } else if (res['token'].includes('party')) {
+          this.currentRole = 'party';
+          this.currentRoleSub.next('party');
           this.altTokenSub.next(res['alt_token']);
         }
         this.email = res['email'];
@@ -90,12 +91,15 @@ export class AuthService {
 
   async checkAuthenticated() {
     const currentToken = localStorage.getItem('api_token');
+    const session_id = localStorage.getItem('session_id');
     if (!currentToken) {
-      console.log('yeyeyeyeyeye123123');
       return false;
     } else {
-      const res = await this.http.post(`${environment.serverUrl}check`, { token: currentToken }).toPromise();
+      const res = await this.http
+        .post(`${environment.serverUrl}check`, { token: currentToken.toLowerCase(), session_id: session_id })
+        .toPromise();
       if (res['status'] === '200') {
+        console.log('1231231231', res);
         this.graphDataService.pullGraphData();
         this.notificationsService.showNotification('Successfully logged in.');
         // this.cookieService.set('api_token', res['token'], 1 / 4);
@@ -108,9 +112,9 @@ export class AuthService {
         } else if (res['token'].includes('vendor')) {
           this.currentRole = 'vendor';
           this.currentRoleSub.next('vendor');
-        } else if (res['token'].includes('customer')) {
-          this.currentRole = 'customer';
-          this.currentRoleSub.next('customer');
+        } else if (res['token'].includes('party')) {
+          this.currentRole = 'party';
+          this.currentRoleSub.next('party');
         }
         this.email = res['email'];
         this.emailChangeSub.next(this.email);
@@ -122,6 +126,45 @@ export class AuthService {
         this.router.navigate(['/index']);
         return false;
       }
+    }
+  }
+
+  async loginAlt(userType) {
+    if (userType === 'admin') {
+      return;
+    }
+    const token = localStorage.getItem('api_token');
+    const alt_token = localStorage.getItem('alt_token');
+    const session_id = localStorage.getItem('session_id');
+    const res = await this.http
+      .post(`${environment.serverUrl}loginAlt`, {
+        email: this.email,
+        session_id: session_id,
+        token: token,
+        alt_token: alt_token,
+        userType: userType
+      })
+      .toPromise();
+    if (res['status'] === '200') {
+      this.graphDataService.pullGraphData();
+      this.notificationsService.showNotification(`Signed in as ${userType}.`);
+      localStorage.setItem('api_token', alt_token);
+      localStorage.setItem('alt_token', token);
+      this.themeChangeSub.next(res['colors']);
+      if (token.includes('admin')) {
+        this.currentRole = 'admin';
+        this.currentRoleSub.next('admin');
+        this.altTokenSub.next('both');
+      } else if (token.includes('vendor')) {
+        this.currentRole = 'party';
+        this.currentRoleSub.next('party');
+        this.altTokenSub.next(token);
+      } else if (token.includes('party')) {
+        this.currentRole = 'party';
+        this.currentRoleSub.next('party');
+        this.altTokenSub.next(token);
+      }
+      return true;
     }
   }
 

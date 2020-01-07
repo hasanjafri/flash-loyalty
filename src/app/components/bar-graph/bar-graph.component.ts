@@ -64,7 +64,7 @@ export class BarGraphComponent implements AfterViewInit, OnDestroy, OnInit {
       series.columns.template.fill =
         this.currentRole === 'vendor'
           ? am4core.color('#0277BD')
-          : this.currentRole === 'customer'
+          : this.currentRole === 'party'
           ? am4core.color('#D84315')
           : am4core.color('1e1e2d');
 

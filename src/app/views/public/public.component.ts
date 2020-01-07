@@ -19,6 +19,14 @@ export class PublicComponent {
   //   this.router.navigate([`/login/${type}`]);
   // }
 
+  navigate(type) {
+    if (type === 'SIGN IN') {
+      this.router.navigate(['/sign-in']);
+    } else if (type === 'REGISTER') {
+      return;
+    }
+  }
+
   changeType(type: string) {
     this.type = type;
   }
