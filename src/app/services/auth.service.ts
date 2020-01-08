@@ -92,6 +92,7 @@ export class AuthService {
   async checkAuthenticated() {
     const currentToken = localStorage.getItem('api_token');
     const session_id = localStorage.getItem('session_id');
+    const altToken = localStorage.getItem('alt_token');
     if (!currentToken) {
       return false;
     } else {
@@ -120,6 +121,7 @@ export class AuthService {
         this.emailChangeSub.next(this.email);
         this.isAuthenticated = true;
         this.authSub.next(true);
+        this.altTokenSub.next(altToken);
         return true;
       } else {
         this.authSub.next(false);
@@ -150,6 +152,7 @@ export class AuthService {
       this.notificationsService.showNotification(`Signed in as ${userType}.`);
       localStorage.setItem('api_token', alt_token);
       localStorage.setItem('alt_token', token);
+      console.log(res['colors']);
       this.themeChangeSub.next(res['colors']);
       if (token.includes('admin')) {
         this.currentRole = 'admin';
@@ -160,8 +163,8 @@ export class AuthService {
         this.currentRoleSub.next('party');
         this.altTokenSub.next(token);
       } else if (token.includes('party')) {
-        this.currentRole = 'party';
-        this.currentRoleSub.next('party');
+        this.currentRole = 'vendor';
+        this.currentRoleSub.next('vendor');
         this.altTokenSub.next(token);
       }
       return true;

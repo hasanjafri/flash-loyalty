@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { OverlayService } from 'src/app/services/overlay.service';
-import { LogInComponent } from 'src/app/views/log-in/log-in.component';
 
 @Component({
   selector: 'app-user-menu-body',
@@ -66,15 +65,20 @@ export class UserMenuBodyComponent implements OnInit, OnDestroy {
   // }
 
   handleLogin(type: string) {
+    // if (type === '') {
+    //   this.authService.changeRole(type);
+    // }
+    // if (this.currentRole === 'admin') {
+    //   return;
+    // } else if (this.currentRole === 'vendor') {
+    //   this.overlayService.open(LogInComponent, null, { type: type });
+    // } else if (this.currentRole === 'party') {
+    //   this.overlayService.open(LogInComponent, null, { type: type });
+    // }
     if (type === '') {
-      this.authService.changeRole(type);
+      this.authService.changeRole('');
     }
-    if (this.currentRole === 'admin') {
-      return;
-    } else if (this.currentRole === 'vendor') {
-      this.overlayService.open(LogInComponent, null, { type: type });
-    } else if (this.currentRole === 'party') {
-      this.overlayService.open(LogInComponent, null, { type: type });
-    }
+
+    this.authService.loginAlt(type);
   }
 }

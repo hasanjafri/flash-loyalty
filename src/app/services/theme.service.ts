@@ -30,6 +30,7 @@ export class ThemeService implements OnDestroy {
       (currentRole) => (this.currentRole = currentRole)
     );
     this.themeChangeSub = await this.authService.themeChangeSub.subscribe((colors) => {
+      console.log(colors);
       this.colors = colors;
       this.setTheme(colors[0], colors[1], colors[2]);
       this.colorsChangeSub.next(colors);
